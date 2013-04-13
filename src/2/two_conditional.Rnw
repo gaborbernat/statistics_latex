@@ -1,0 +1,17 @@
+<<label=two_conditional, fig=TRUE, echo=FALSE>>=
+allData <- read.table('SkeletonData.txt', header=TRUE) # read in the whole file
+attach(allData)
+allData
+BMI = factor(BMI, levels = c('underweight', 'normal', 'overweight', 'obese'))
+Sex = factor(Sex, levels=c('1', '2'), labels=c('Male', 'Female'))
+library(gmodels)
+joint = CrossTable(BMI, Sex, prop.chisq=FALSE)
+
+layout(matrix(c(2,2,1,1), 2, 2, byrow = TRUE))
+# side by side barplot
+barplot(joint$t, beside=TRUE, col=rainbow(4), ylab='Frequency', xlab='Sex')
+# add legend information, 15 = plotting symbol, a little square
+legend('topright', c('underweight', 'normal', 'overweight', 'obese'), pch = 15, col=rainbow(4))
+#stacked barplot
+barplot(joint$prop.col, beside=FALSE, col=rainbow(4), ylab='Frequency', xlab='Sex')
+@

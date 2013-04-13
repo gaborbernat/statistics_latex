@@ -1,0 +1,42 @@
+<<label=boxplot_modified, fig=TRUE, echo=FALSE,width=8>>=
+allData <- read.table('SkeletonData.txt', header=TRUE) # read in the whole file
+lifeExpentancy = allData[,6]                # extract second column
+boxplot(lifeExpentancy, col="lightgray")    # draw a boxplot, with lightgray inner color
+
+arrowSize = 0.2
+right = 0.79
+summary = summary(lifeExpentancy)
+median <- summary['Median']
+arrows(x0=0.7, y0=median, x1=right, y1=median, length= arrowSize, angle=30, col='red')
+text(x=0.7, y=median, labels='Mean',cex=1.2, pos = 2)
+
+quantile3rd <- summary['3rd Qu.']
+arrows(x0=0.7, y0=quantile3rd, x1=right, y1=quantile3rd, length= arrowSize, angle=30, col='red')
+text(x=0.7, y=quantile3rd, labels='3rd quartile', cex=1.2, pos = 2)
+
+quantile1st <- summary['1st Qu.']
+arrows(x0=0.7, y0=quantile1st, x1=right, y1=quantile1st, length= arrowSize, angle=30, col='red')
+text(x=0.7, y=quantile1st, labels='1st quartile', cex=1.2, pos = 2)
+
+min <- summary['Min.']
+arrows(x0=0.7, y0=min, x1=right+ 0.1, y1=min, length= arrowSize, angle=30, col='red')
+text(x=0.7, y=min, labels='Minimum', cex=1.2, pos = 2)
+
+max <- summary['Max.']
+arrows(x0=0.7, y0=max, x1=right + 0.1, y1=max, length= arrowSize, angle=30, col='red')
+text(x=0.7, y=max, labels='Maximum', cex=1.2, pos = 2)
+title('A modified boxplot')
+
+iqr = IQR(lifeExpentancy)
+lower_fence <-quantile1st - 1.5 * iqr
+arrows(x0=0.7, y0=lower_fence, x1=right + 0.1, y1=lower_fence, length= arrowSize, angle=30, col='red')
+text(x=0.7, y=lower_fence, labels='Lower fence', cex=1.2, pos = 2)
+
+upper_fence <- quantile3rd + 1.5 * iqr
+arrows(x0=0.7, y0=upper_fence, x1=right + 0.1, y1=upper_fence, length= arrowSize, angle=30, col='red')
+text(x=0.7, y=upper_fence, labels='Upper fence', cex=1.2, pos = 2)
+
+arrows(x0=right+0.43, y0=quantile3rd, x1=right+0.43, y1=quantile1st, length= arrowSize, angle=30, col='red')
+arrows(x0=right+0.43, y0=quantile1st, x1=right+0.43, y1=quantile3rd, length= arrowSize, angle=30, col='red')
+text(x=right+0.45, y=(min+max)/2-20, labels='Inter-quartile range', cex=1.2, pos = 4, srt=90)
+@

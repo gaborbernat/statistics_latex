@@ -1,0 +1,8 @@
+<<label=correlation, fig=TRUE, echo=TRUE>>=
+Countries = read.table('LifeGDPhiv.txt')
+colnames(Countries) = c('Country', 'LifeExp', 'GDP', 'HIV')
+attach(Countries)
+plot(GDP, LifeExp, xlab='GDP per capita (2000 US $)', ylab='Life Expectancy (years)', main='Scatterplot: Life Expectancy versus GDP per capita')
+cor(GDP, LifeExp)
+cor(LifeExp, GDP)
+@

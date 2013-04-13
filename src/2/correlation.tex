@@ -1,0 +1,35 @@
+\begin{Schunk}
+\begin{Sinput}
+> Countries = read.table('LifeGDPhiv.txt')
+> colnames(Countries) = c('Country', 'LifeExp', 'GDP', 'HIV')
+> attach(Countries)
+\end{Sinput}
+\begin{Soutput}
+The following object(s) are masked from 'Countries (position 3)':
+
+    Country, GDP, HIV, LifeExp
+The following object(s) are masked from 'lifedata (position 4)':
+
+    Country, LifeExp
+The following object(s) are masked from 'lifedata (position 5)':
+
+    Country, LifeExp
+The following object(s) are masked from 'lifedata (position 6)':
+
+    Country, LifeExp
+\end{Soutput}
+\begin{Sinput}
+> plot(GDP, LifeExp, xlab='GDP per capita (2000 US $)', ylab='Life Expectancy (years)', main='Scatterplot: Life Expectancy versus GDP per capita')
+> cor(GDP, LifeExp)
+\end{Sinput}
+\begin{Soutput}
+[1] 0.6350906
+\end{Soutput}
+\begin{Sinput}
+> cor(LifeExp, GDP)
+\end{Sinput}
+\begin{Soutput}
+[1] 0.6350906
+\end{Soutput}
+\end{Schunk}
+\includegraphics{correlation-correlation}

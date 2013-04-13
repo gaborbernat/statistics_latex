@@ -1,0 +1,6 @@
+<<label=histogram, fig=TRUE, echo=FALSE,width=8>>=
+allData <- read.table('LifeExpentancy.txt', header=TRUE) # read in the whole file
+lifeExpentancy = allData[,2]                # extract second column
+hist(lifeExpentancy, col="lightgray", labels=TRUE, main='A histogram showing the life expentancy by country',
+     xlab='Life expentancy in years', ylim=c(0, 52)) 
+@

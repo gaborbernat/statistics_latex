@@ -1,0 +1,465 @@
+\section{Releationships and data collections}
+
+\subsection{Relationship between quantitive and categorical variables}
+
+Relationships are at the hearth of statistic. Let us consider an example. Let
+there be the unit of observation the worlds countries. Now we define on this two
+variables: a quantitive one -- the life expentancy, and a caterogical one -- in
+which of the six world regions they fall into. Now we want to check for instance
+if life expectancy in East Asia and Pacific tends to be larger than in the
+Sub-Saharan Africe. 
+
+One way of approach is to consider the median and mean per region, and to see
+where this it's larger. However, this does not tells the whole story as the
+highest in one of the regions can still be a lot higher than the lowest in
+another region. Box plot is a graphical way to make the comparision.
+
+Examining the relationship between a quantitative variable and a categorical
+variable involves comparing the values of the quantitative variable among the
+groups defined by the categorical variable. We need to:
+
+\begin{enumerate}
+  \item Examine the centre of the data in each group.
+  \item Examine the spread of the data in each group.
+  \item Examine the centre of the data in each group. 
+\end{enumerate}
+
+So create a boxplot (or summary) for each categorical observation and compare.
+
+\subsection{In the R language}
+
+In the R lanugage we can draw a new boxplot per category to make the
+comparision. To separate categories we can use the \emph{split} function, and
+finally use non-modified boxplots (\emph{range} is set to $0$) to draw them,
+as seen on figure \ref{fig:boxplots}: 
+
+\begin{minted}[numbersep=5pt]{r}
+lifedata = read.table('LifeExpRegion.txt')
+colnames(lifedata) = c('Country', 'LifeExp', 'Region')
+attach(lifedata)
+lifedata[Region=='EAP', ]
+lifesplit = split(lifedata, Region)
+lifeEAP = lifedata[Region=='EAP',]
+lifeSSA = lifedata[Region == 'SSA', ]
+boxplot(lifeEAP[,2], lifeSSA[,2], range=0, border=rainbow(2), 
+        names=c('EAP', 'SSA'), main="Life Expectancies: Box Plot")
+boxplot(LifeExp~Region, range=0, border=rainbow(6), 
+               main='Life Expectancies: Box Plot (all 6 regions)')
+\end{minted}
+
+\begin{figure}[htbp]
+\label{fig:boxplots}
+\caption{Boxplots to compare quantitive and categorical variables}
+\includegraphics{2/boxplots-boxplots}
+\end{figure}
+
+\subsection{Relationship between two categorical variables}
+
+For instance let there be the two observations the gender of persons and their
+body weight. One question we can ask is that are the same count of overweight
+female as man?
+
+\subsubsection{Distributions}
+
+Distribution types are:
+
+\begin{description}
+  \item[joint distribution] of two categorical variables is the frequency or
+  relative frequency of the observations considered together as a combination.
+  The graphical approach is to use bar plots per combination, or aggregate these
+  into a stacked bar plot.
+  \item[marginal distribution] is the distribution of only one of the variables
+  in a contingency table (so we take the total of the rows or of the columns in
+  the table -- essentially its the distribution by only one of the variables).
+  \item[marginal distribution] is the distribution of only one of the variables
+  in a contingency table (so we take the total of the rows or of the columns in
+  the table -- essentially its the distribution by only one of the variables).
+  \item[conditional distribution] of a categorical variable is its distribution
+  within a fixed value of a second variable. This distribution is normalized by
+  the count of the fixed value. For graphical approach a stacked plot is used,
+  by using the percentage values. Two variables in a contingency table
+  indedependent if the conditional distribution of one variable is the same for
+  all values of other variable.
+ \end{description}
+
+\begin{description}
+  \item[Simpson's paradox] is when the conditional distributions within
+  subgroups can differ from condition distributions for combined observations.
+  The issue behind the paradox is that behind the two categorical variables ther
+  is a third lurking variable which influences the study, like for a smoking
+  study, to transform the age into age groups (if we study if the people die
+  or not, having more old people in a group as observations may influence the
+  result).
+\end{description}
+\subsubsection{Categorical values in R}
+
+Categorical variables read into R are always sorted alphabetically, and
+therefore any statistics about it will be displayed on that order. However,
+sometimes there is a better order to this variables. In this case we can use the
+\emph{factor} function and its \emph{levels} paramter to set a different order
+for the categories: 
+
+\begin{minted}[numbersep=5pt]{r}
+allData <- read.table('SkeletonData.txt', header=TRUE) # dataset read 
+attach(allData) # now we can use the column header names as variables
+BMI = factor(BMI, levels = c('underweight', 'normal', 'overweight', 
+                             'obese')) # reorder categories
+\end{minted}
+
+We can even give to the categories nicer names, as we do in the following
+example for the sex categorical variable (which in the file is specified by the
+values $1$ and $2$): 
+
+\begin{minted}[numbersep=5pt]{r}
+Sex = factor(Sex, levels=c('1', '2'), labels=c('Male', 'Female'))
+\end{minted}
+
+To find the number of items per category use the \emph{table} command. You can
+divide tis with the number of observations to get the relative frequencies:
+
+\begin{minted}[numbersep=5pt]{r}
+relfreqBMI = table(BMI)/length(BMI)
+\end{minted}
+
+Which will result in the distribution of the data:
+
+\begin{minted}[numbersep=5pt]{r}
+BMI
+underweight      normal  overweight       obese 
+     0.1850      0.5625      0.2025      0.0500 
+\end{minted}
+
+We can even combine the relative and non relative values in a single table: 
+\begin{minted}[numbersep=5pt]{r}
+cbind(freqBMI, relfreqBMI)
+\end{minted}
+
+To get joint and the conditional distribution for two categorical variables we
+need to use the \emph{CrossTable} function from the \emph{gmodels} library. 
+
+\begin{minted}[numbersep=5pt]{r}
+library(gmodels)
+joint = CrossTable(BMI, Sex, prop.chisq=FALSE) 
+  Cell Contents # legend for the table below
+|-------------------------|
+|                       N |
+|           N / Row Total |
+|           N / Col Total |
+|         N / Table Total |
+|-------------------------|
+Total Observations in Table:  400  
+             | Sex 
+         BMI |      Male |    Female | Row Total | 
+-------------|-----------|-----------|-----------|
+ underweight |        46 |        28 |        74 | 
+             |     0.622 |     0.378 |     0.185 | 
+             |     0.164 |     0.235 |           | 
+             |     0.115 |     0.070 |           | 
+-------------|-----------|-----------|-----------|
+      normal |       166 |        59 |       225 | 
+             |     0.738 |     0.262 |     0.562 | 
+             |     0.591 |     0.496 |           | 
+             |     0.415 |     0.147 |           | 
+-------------|-----------|-----------|-----------|
+  overweight |        59 |        22 |        81 | 
+             |     0.728 |     0.272 |     0.203 | 
+             |     0.210 |     0.185 |           | 
+             |     0.147 |     0.055 |           | 
+-------------|-----------|-----------|-----------|
+       obese |        10 |        10 |        20 | 
+             |     0.500 |     0.500 |     0.050 | 
+             |     0.036 |     0.084 |           | 
+             |     0.025 |     0.025 |           | 
+-------------|-----------|-----------|-----------|
+Column Total |       281 |       119 |       400 | 
+             |     0.703 |     0.297 |           | 
+-------------|-----------|-----------|-----------|
+\end{minted}
+
+\begin{figure}[H]
+\label{fig:two_categorical}
+\caption{Relationship between two categorical variables}
+\includegraphics[width=0.8\textwidth]{2/two_conditional-two_conditional}
+\end{figure}
+
+At this point the \texttt{joint} contains four tables: a contingency table
+(frequencies -- \texttt{joint\$t}), two conditional distribution (one per point
+of view -- sex \texttt{joint\$prop.col} or BMI \texttt{joint\$prop.row}), and
+one displaying relative frequencies (joint distribution --
+\texttt{joint\$prop.tbl}). We can use barplots to visualize this:
+
+\begin{minted}[numbersep=5pt]{r}
+layout(matrix(c(2,2,1,1), 2, 2, byrow = TRUE))
+# side by side barplot
+barplot(joint$t, beside=TRUE, col=rainbow(4), ylab='Frequency', 
+                                              xlab='Sex')
+# add legend information, 15 = plotting symbol, a little square
+legend('topright', c('underweight', 'normal', 'overweight', 'obese'), 
+                                            pch = 15, col=rainbow(4))
+#stacked barplot
+barplot(joint$prop.col, beside=FALSE, col=rainbow(4), 
+                                      ylab='Frequency', xlab='Sex')
+\end{minted}
+
+as you can see it on figure \ref{fig:two_categorical}.
+
+\subsection{Relationship between two quantitive variables}
+
+One approach is to convert one (or both) of the quantitive variables into
+categorical variable and then just use the already seen methods. One way to
+create good groups is to use the quartile breakdown. However, this does not uses
+the full information of the quantitive variables. 
+
+One way to use it is to use a scatterplot (that is to use the quantitive
+variable pairs as points in the space). On this we can use regression techniques
+to fit a line on the points, effectively finding the relationship between the
+variables (correlation means a rising line)
+
+A numerical representation of this is the \emph{correlation}. Let there be two
+variables indicated by the series $x_1, x_2, \ldots, x_n$ and $y_1, y_2, \ldots
+y_n$, the correlation is calculated as:
+
+\[ \mbox{correlation} = \frac{\sum_{i=1}^{n}\left( x_i-\bar{x}\right) \cdot
+\left( y_i - \bar{y}\right)}{\sqrt{\sum_{i=1}^{n}\left( x_i-\bar{x}\right)^2
+\cdot \sum_{i=1}^{n}\left( y_i - \bar{y}\right)^2}}
+\]
+
+Correlation values are between $[-1, 1]$, where $1$ is perfect match, and $-1$
+is the perfect negative. If this is a positive value when one increases the
+other tends to follow. However, note that this only captures the linear aspects
+of the relationship.
+
+\subsubsection{In the R lanuage}
+
+For calculating the correlation we can use the \emph{cor} function.
+ 
+\begin{minted}{r}
+Countries = read.table('LifeGDPhiv.txt')
+colnames(Countries) = c('Country', 'LifeExp', 'GDP', 'HIV')
+attach(Countries)
+plot(GDP, LifeExp, xlab='GDP(2000USD)', ylab='Life Expectancy (years)', 
+     main='Scatterplot: Life Expectancy versus GDP per capita')
+cor(GDP, LifeExp)
+[1] 0.6350906
+cor(LifeExp, GDP)
+\end{minted}
+
+\begin{figure}[htbp]
+\label{fig:correlation}
+\caption{Relationship between two quantitive variables}
+\includegraphics[width=0.8\textwidth]{2/correlation-correlation}
+\end{figure}
+
+Figure \ref{fig:correlation} shows the information visually, when drawn on a
+plot.
+
+\subsection{Sampling}
+The goal of the statistics is to make rational decision or conclusion based on
+the incomplete information that we have in our data. This process is knows as
+\emph{statistical inference}. The question is that if we see something in our
+date (like a relationship between two variables) is it due to chance or a real
+relationship? If it's not due to change then what broder conclusions we can
+make, like generalize them to a larger group, or does it supports a theoretical
+model? In this process the data collection has a major significance.
+
+We collect data from the real world, however our scientific and
+statistical models are part of a theoretical world. 
+
+\begin{description}
+  \item[population] the group we are interested in making conclusion about.
+  \item[census] a collection of data on the entire population. This would be the
+  best, however it's impractical due to time and cost effectiveness; or it's
+  straight up impossible if by observing the item we would destroy it.
+  Therefore, in practice we sample the population; and infer conclusions from
+  the sample group.
+  \item[statistic] is a value calculated from our observed data. It estimates a
+  feature of the theoretical world.
+  \item[paramter] is a feature of the theoretical world. Statistics are used to
+  estimate their values. In order to get a good estimation our sampling needs
+  to be \emph{representative}.
+  \item[randomisation] is the key to select representative samples. This ensures
+  that we do not over-- or under--sample any part of the population.  
+\end{description}
+
+Methods to make random sampling: 
+
+\begin{description}
+  \item[Simple Random Sampling -- SRS] Each possibly sample size of $n$ (the
+  sample size) from the population is equally likely to be the sample that is
+  choosen. A pratical example of this is taking out balls from a hat. 
+  \item[Stratified sampling] Divide the population into non--overlapping
+  subgroups called strata and choose a SRS within each subgroup. Provinces and
+  states are a practical instances of stratas. This performs better when we may
+  want to compare stratas, or can allow to better see traits if something is
+  only characteristic to only some of the stratas (which otherwise would be
+  hidden on the whole sample space).
+  \item[Cluster sampling] Divide the population into non--overlapping subgroups
+  called clusters, select clusters at random, and include all individual inside
+  the cluster for sampling. It's good when it's easier to select groups instead
+  of members; for example if we want to study students we may choose to select
+  random schools and use students inside those as samples. This does requires
+  that each cluster to be representative for the whole population.
+\end{description}
+
+There are also non--random sampling techniques:
+
+\begin{description}
+  \item[Systematic sampling] Select every $k$--th individual from a list of the
+  population, where the position of the first person choosen is randomly
+  selected from the first $k$ individuals. This will give a non--represenative
+  sample if there is a structure to the list. This is fine if in the ordering of
+  the population has no meaning.
+  \item[Conveniance or Voluntar sampling] Use the first $n$ individuals that are
+  available or the individuals who offer to participate. This is almost sure to
+  give a non--representative sample which cannot be generalized to the
+  population.
+\end{description}
+
+If the sample is not representative it can induce \emph{bias} into our results,
+that is that it differs from its corresponding population in a systematic way.
+Bias types are:
+
+\begin{description}
+  \item[Selection bias] occurs when the sample is selected in such a way that it
+  systematically excludes or under--represents part of the population. For
+  instance poll by using only land line phones (misses the cellular population).
+  \item[Measurement or Response bias] occurs when the data are collected in such
+  a way that it tend to result in observed values that are different from the
+  actual value in some systematic way. In case of a poll this shows in terms of
+  ill formed questions.
+  \item[Nonresponse bias] occurs when responses are not obtained from all
+  individuals selected for inclusion in a sample. An example of this is in a
+  poll working parents tend to not respond, so their sampling will be under
+  represented.
+\end{description}
+
+\subsection{Observational studies}
+
+Whenever we want to compare the effect of variables on each other we need to
+construct a study, for which sampling is really importat. Let us assume that we
+have two (or more) groups,  and we want to compare a \emph{response variable}
+(\emph{outcome}) between them. An \emph{explanatory variable} is a variable that
+can be used to possibly explain the differences in the response variable between
+groups (cause $\Rightarrow$ effect).
+
+In the study we want to avoid \emph{confounding variables}, which differ between
+groupsa and may effect the response variable so we can't tell what causes the
+differences between groups. For instance if one were to study the effect of pot
+on the IQ of the person, here a confounding variable is the social alternative
+(which governs the IQ better, than the pot itself). 
+
+Data collection methods include anecdotes (this are not representative),
+observational studies and experiments. Experiments differ from observational
+studie is the strength of the conclusion we can make, which is higher for the
+experiment.
+
+In observational studies we just observe existing characteristics of a subset of
+individuals inside the population. The goal is to make conclusion about the
+population based on the samples, or to conclude the relationship between groups
+or variables in the sample. 
+
+In this scenario the investigator has no control on which individual in which
+group belongs or about any of their characteristic, as opposed to the experiment
+where he can add some kind of intervention. 
+
+The relationship between the outcome and the explanatory variable may be:
+
+\begin{description}
+  \item[causes] explanatory variable $\Rightarrow$ outcome (drinking coffe
+  results in a longer life)
+  \item[reverse causation] outcome $\Rightarrow$ explanatory variable (people
+  with health issues avoid drinking coffe, though the longer life)
+  \item[coincidence] pure chance
+  \item[common cause] both of them are effected by another variable (who have
+  diabiates drink less coffee, however due to their sickness have shroter life)
+  \item[confounding variable] they vary with the explanatory variable. If one
+  changes the other changes with it (smokers tend to drink more cofee, however
+  this also effects the expected life outcome)
+\end{description}
+
+\emph{Lurking variables} are variables that are not considered in the analysis,
+but may effect the natuer of relationship between the explenatory variable and
+the outcome. This may be a confounding variable, or the source of the common
+response , or another variable that, when considered, changes the nature of the
+relationship.
+
+\subsection{Experiments}
+
+Are the golden standard. Allows for making conlusions. Again the response
+variable (or also know as dependent variable -- how it depends from other
+variables) is the outcome of interest, measured on each subject or entity
+participating in the study (this may be quantitive or categorical). Explanatory
+variable (predictor or independent variable) is a variable that we think might
+help to explain the value of the response variable (can also be quantitive or
+categorical).
+
+Compared to the observation study now the researcher manipulates the explanatory
+variables to see the effect of them on the outcome. Tipically a researcher has
+finite time, and therefore he can study only a finit number of variable values,
+and such the explanatory variable tends to be a categorical one, to which we can
+also refer as a \emph{factor}. The values of the factor studied in the
+experiment are its \emph{levels}.
+
+A particular combination of values for the factors is called \emph{treatment}.
+An \emph{experimental unit} is the smallest unit to which the treatment is
+applied to. A treatment may not be applied to a single entity, like trying out a
+new study method for a class results in a single experimental unit (a class)
+instead of the count of the students inside the class.
+
+\begin{description}
+  \item[extraneous factors] are not of interest in the current study, but are
+  thought to affect the reponse. They need to be controlled to avoid them
+  effecting the outcome. For controlling we can: 
+  \begin{itemize}
+  \item Hold it constant. This limits the generilization of the study, however
+  it also eliminates turning the extraneous variable into a confounding one.
+  \item Use blocking, where block are groups of experimental units that are
+  similar. All treatments are assigned to experimental units within each block.
+  So for instance in a vaccine testing we create age groups, and each group will
+  have have members getting any one of treatments, however the group as a hole,
+  receives all the vaccines.
+\end{itemize}
+  However, this still does not solves the problem of extranous or unknown
+  variables. To bypass this we need to use randomisation to assign experimental
+  units to treatment groups.
+\end{description}
+
+Once we've eliminated other differences between the treatment groups, if the
+response variable is different among the groups, the only explanation is the
+treatment and casual conclusions can be made.
+
+Fundamentals of experimental design:
+
+\begin{enumerate}
+  \item \emph{Control} the identified extraneous variables by blocking or
+  holding them constant.
+  \item \emph{Randomisation} -- is to randomly assign expermintal units
+  to treatment groups.
+  \item \emph{Replication} -- induce it. Not repeat the experiment, but to apply
+  each treatment to more than one experimental unit. This allows to measure
+  variability in the measurement of the response (which in turn also ensures
+  that treatment groups are more comparable by extraneous factors, by having
+  the oppurtunity of these to differ between groups).
+\end{enumerate}
+
+Experiments also have a control group. This is used to make comparisions with a
+treatment of interest and either does not receives a treatment (what if the
+study itself causes the change to occur) or receives the current standard
+treatment. It's also refered to as the comparision group.
+
+In conclusion we can say the randomised controlled experiments are needed to
+establish casual conclusion. Another technique to reduce the potential of bias
+is \emph{blinding}: 
+\begin{enumerate}
+  \item the experimental units are blinded, so they do not know which treatment
+  they have received.
+  \item the researcher is blinded if s/he does not know which treatment was
+  given.
+\end{enumerate}
+
+Experimetns can be single--blinded (only one type of blinding was used) or
+double--blind (if both types of blinding was used). You can also use the
+\emph{placebo effect}. People often show change when participating in an
+experiment wheater or not they receive a treatment. It's given to the control
+group. A placebo is something that is identical to the treatment recevied by the
+treatment groups, except that it contains no active ingridients.

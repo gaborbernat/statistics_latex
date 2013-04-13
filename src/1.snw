@@ -1,0 +1,12 @@
+\section{Making sense of data}
+\subsection{Five number summary}
+
+Here's a figure:
+
+\begin{figure}[H]
+\caption{Avril}
+<<label=demo, fig=TRUE, echo=FALSE>>=
+x <- seq(0, 6*pi, length=100)
+plot(x, sin(x))
+@
+\end{figure}

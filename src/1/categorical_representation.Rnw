@@ -1,0 +1,15 @@
+<<label=categorical_representation, fig=TRUE, echo=FALSE>>=
+allData <- read.table('LifeExpentancy.txt', header=TRUE) # read in the whole file
+region = allData[,3]                # extract second column
+
+table(region)
+region
+counts = table(region)
+relfreq = counts/sum(counts)
+region_names = c("Americas", "E.Asia&Pc", "Eur&C.As", "M.E&N.Afr",
+                   "S.Asia", "S-S.Africa") 
+layout(matrix(c(3,2,1,1), 2, 2, byrow = TRUE))
+pie(counts, col=rainbow(6), label = region_names, main = "World Regions: Pie Chart")
+barplot(counts, col=rainbow(6), names.arg = region_names, main = "World Regions: Bar Chart")
+barplot(relfreq, col=rainbow(6), names.arg = region_names, main = "World Regions: Relative Frequencies")
+@
