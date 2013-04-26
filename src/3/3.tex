@@ -1,0 +1,261 @@
+\section{Introduction to Probability}
+
+\subsection{The need for probability}
+
+Up to this point we've seen and focused on how to handle data available to us.
+Now it's time to see what the data in the real world corresponds in the
+theoretical world. The data of the real world, that we usually end up having,
+can be viewed as just a sampling of the theoretical world (which has an
+infinit number of data points). Even if it really isn't any more data points in
+the real world (so we have collected all the existing data points) we can still
+pretend that there is and construct a theoretical model around it.
+
+We usually try to draw inferences about our theoretical world by using the data
+that we have, which represents the real world. Of course, the theoretical world
+may differ from the real world and we'll be interested in studying the
+relationship between two world. For instance let us consider a coin toss. In the
+theoretical world we \emph{expect} to get $5$ heads out of ten tosses, yet if we
+were to conduct a little experiment we may end up \emph{getting} $6$ heads out
+of ten tosses.
+
+In some cases (like tossing a bottle cap) we may not even have a theoretical
+model, so the question arises that what we can conclude in this case? 
+
+\subsection{Probability basics}
+
+\begin{description}
+  \item[Outcomes] are possible data that our experiment may result in. The set
+  of all possible outcomes is the \emph{sample space} and it's noted as $S$.
+  \item[Event] is any subset of the sample space.
+  \item[Probability] -- each event has it's own probability to turn true, and
+  for event $A$:
+  \[
+  0 \leq \mbox{P}(A) \leq 1 
+  \]
+  For example, the probability of some outcome is $1$, as we always end up
+  having some result. The probability of the comploment event (meaning that
+  event $A$ is not true) is:
+ \[
+  \mbox{P}(\bar{A}) = 1 - \mbox{P}(A)
+ \] 
+\end{description}
+
+The term probability may have multiple interpretations: applies to a theoretical
+world with a theoreticaal model where the probability for an event to occur is
+P$(A)$; or we can look it as a long run, meaning that if we repeat the
+experiment over and over again for a long time the occurance of event $A$ is
+P$(A)$ fraction of all the events; another one is the subjective one: in my
+opinion the chance that the event to occur is P$(A)$.
+
+\subsection{Probability distributions}
+
+For a coin or bear bottle fliping we use the binomial, not ass
+B$(2,\frac{1}{2})$  distribution. If the exponential of the binomial is
+one, we refer to it as te Bernoulli distribution: Bernoulli$(\frac{1}{2}) =
+$B$(1, \frac{1}{2})$. The rolling of a dice is a discrete uniform
+distribution.
+
+\emph{Mean} is the expected value, what it equales ,,on average'' 
+
+\[ \mbox{mean} = \mu = \sum_{x}x\mbox{P}(x)
+\]
+
+For instance in case of a rolling dice with six side:
+
+\[
+\mbox{mean} =
+1\cdot\frac{1}{6}+2\cdot\frac{1}{6}+3\cdot\frac{1}{6}+4\cdot\frac{1}{6}+5\cdot\frac{1}{6}+6\cdot\frac{1}{6}=\frac{7}{2}=3.5
+\]
+
+For flipping two coins, with $Y$ being the total number of heads: 
+
+\[
+\mbox{mean}=E(Y)= 0\cdot\frac{1}{4}+1\cdot\frac{1}{2}+2\cdot\frac{1}{4} = 1
+\]
+
+\emph{Variance} in the theoretical world measures the spread of the values from
+their mean value. The formula is:
+
+\[
+\mbox{variance} = \sum_{x} (x-\mu)^2\cdot\mbox{P}(x) 
+\]
+
+So for one coing flipping:
+
+\[ \mbox{variance} =  \left(1-\frac{1}{2}\right)^2 +
+\left(0-\frac{1}{2}\right)^2 + =  \frac{1}{4} \]
+
+The \emph{standard deviation} is: 
+\[ \mbox{SD} = \sqrt{\mbox{variance}} = \sqrt{\frac{1}{4}} = \frac{1}{2}
+\]
+
+The mean is linear, so any linear combination of two random variables may be
+expressed with their means:
+
+\[ \mbox{E}(aX+bY) = a\cdot\mbox{E}(X) + b\cdot\mbox{E}(Y)\]
+
+For variance:
+
+
+
+\begin{align*}
+ \mbox{Var}(aX) &= a^2\cdot\mbox{Var}(X) \\ 
+ \mbox{Var}(aX+b) &= a^2\cdot\mbox{Var}(X) \\
+  \mbox{SD}(aX) &= |a|\cdot\mbox{SD}(X) 
+\end{align*}
+
+If $X$ and $Y$ are independent:
+\[ \mbox{Var}(X+Y) = \mbox{Var}(X) + \mbox{Var}(Y) 
+\]
+
+Discrete random variables has a finit number of possible outcomes, and thus may
+be enumerated in a form of a list. Continous random varaibles can take any value
+inside an interval. An instance of this is the unifrom variable, for instance on
+the interval from zero to one, meaning it's equally likeley to be any number
+inside this interval. 
+
+So for example P$(0 \leq X \leq 1) = 1$, and P$(0 \leq X \leq \frac{1}{3}) =
+\frac{1}{3}$; generally speaking P$(a \leq X \leq b) = b - a$, if $0 \leq a \leq
+b \leq 1$. This does mean that if $a=b$ the probability is zero, so it's easier
+to think of continous probability as the area under the graph of the density
+function. It's important that for any density function the total area of the
+entire graph to be equal with $1$.
+
+Uniform distributions are of a form of square function, however other functions
+exist to like the exponential$(1)$ function has the form of: 
+
+\[
+ f(x) =
+  \begin{cases}
+   e^{-x} & \text{if } x > 0 \\
+   0       & \text{if } x \leq 0
+  \end{cases}
+\]
+
+The standard normal (Gaussian) distribution (bell--curve): 
+
+\[ f(x)=\frac{1}{\sqrt{2\pi}} \cdot e ^{-\frac{x^2}{2}}\]
+
+New bell--curves may be constructed by shifting the upper with $\mu$ (making it
+the new center point) and stretching it by a factor of $\sigma$, and is noted as
+Normal$(\mu, \sigma^2)$. If we have a random variable $X$ from this newly
+constructed normal distribution we may transform it into a standard normal
+distribution by: 
+
+\[ 
+Z = \frac{X - \mu}{\sigma} , \mbox{~ where $Z ${\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}} Normal} (0,1). 
+\]
+
+For expected values and standard deviation now we use integals instead of sums,
+for example the expected value of the uniform distribution between $0$ and $1$
+is:
+
+\[ \mbox{E}(X) = \int_{0}^{1}x\mbox{d}x = \frac{1}{2}  \]
+
+with it's variance:
+
+\[ \mbox{Var}(X) = \int_{0}^{1}\left(x - \frac{1}{2}\right)^2\mbox{d}x =
+\frac{1}{12}
+\]
+
+For the exponential distribution it's expected value is:
+
+\[ \mbox{E}(X) = \int_{0}^{\infty}x\cdot e^{-x}\mbox{d}x = 1  \]
+
+with it's variance:
+
+\[ \mbox{Var}(X) = \int_{0}^{\infty}\left(x - 1\right)^2\cdot e^{-x}\mbox{d}x =
+1 \]
+
+For the $X ${\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}} Normal $(0,1)$: 
+
+\[ \mbox{E}(X)  = \int_{-\infty}^{\infty}x \cdot \frac{1}{\sqrt{2\pi}}
+\cdot e^{-\frac{x^2}{2}} \mbox{d}x = 0 
+\]
+
+\[ \mbox{Var}(X)  = \int_{-\infty}^{\infty} \left(x - 0\right)^2 \cdot
+\frac{1}{\sqrt{2\pi}} \cdot e^{-\frac{x^2}{2}}\mbox{d}x = 1 
+\]
+
+And in case of $Y ${\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}} Normal
+$(\mu,\sigma^2)$ the mean is $\mu$, variance of $\sigma^2$ and standard
+deviation of $\sigma$.
+
+\subsection{Long running averages} 
+
+What happens if you repeat an experiment lots of times and you look at the
+average value you get. For example if you start flipping a coin a lot of times
+and you look at the fraction of times you get head, you expect that the more you
+do it, the more this comes closer to half. If you were to draw the probabilities
+of the coin flip on a graph, you'd observe that the shape starts to resemble the
+density function for the normal distribution. The same is the case for dice
+rolling at looking the average of the rolled numbers.
+
+\emph{The Law of Large Numbers} states that if an experiment is repeated over
+and over, then the average result will converge to the experiment's expected value.
+
+\emph{The Central Limit Theorem} states that if an experiment is repeated over
+and over, then the probabilities for the average result will converge to a
+Normal--distribution.
+
+Suppose that an experiment is repeated over and over, with outcomes: $X_1, X_2,
+$ $~\ldots$ and suppose each mean is E$(X_i) = m$, and each variance is is
+Var$(X_i)=v$. Now let $\bar{X} = \frac{X_1 + X_2 +\ldots + X_n}{n}$ be the
+average outcome. In this case we can say that:
+
+\[ \mbox{E}(\bar{X}) = \frac{\mbox{E}(X_1) + \mbox{E}(X_2) + \ldots +
+\mbox{E}(X_n)}{n} = \frac{nm}{n} = m,\]
+
+\[ \mbox{Var}(\bar{X}) = \frac{\mbox{Var}(X_1) + \mbox{Var}(X_2) + \ldots +
+\mbox{Var}(X_n)}{n} = \frac{nv}{n^2} = \frac{v}{n},\]
+
+so we can conclude as n rises to infinity the variance (uncerteinty) becomes
+smaller and smaller, tending to zero; with this the standard deviation too.
+
+The centreal limit theorem also is responsible for the emparical rule; the
+percentages are true for the graph of the normal distribution. In conclusion we
+can say that all that is some kind of average, or is made up of lots and lots of
+small contributions usually has a normal distribution behind it.
+
+\subsection{Sampling distribution}
+
+From the real world we collect samples, which can be considered as part of the
+theoretical worlds population. We have scientific and statistical models in the
+theoretical world which have parameters of features that we do not know. We use
+the science of statistics to estimate them.
+
+Let there be $p$ our parameter of interest, what we are observing, and let it
+denote the number of heads of a coin flip sequence. From the real world (data)
+we get some result. With this we can esitmate the parameter as:
+
+ \[ \hat{p} = \frac{\mbox{numbers of heads observed}}{\mbox{number of coin
+ flips}}\].
+ 
+ The observed value of an estimator varies from sample of data to sample of
+ data. The variability of this is called the \emph{sampling variability}. The
+ probability distributions of the possible value of an estimator is its sampling
+ distribution.
+ 
+ A statistic used to estimate a paramters is \emph{unbiased} if the expected
+ value of its sampling distribution is equal to the value of the parameter being
+ estimated (the sampling probability is the same as the theoretical
+ probability). How close the distribution of the sampling gets to the parameter
+ dependes on the varince of the sampling distribution. This decreases with the
+ number of samples, so the more data we have the closer we get to the
+ theoretical word.
+ 
+ Following the central limit theorem for large $n$ the sampling distribution for
+ a Bernoulli event (happens or not, with probability $p$) is N$\left( p,
+ \frac{p(1-p)}{n}\right)$ (sampling distribution of $\hat{p}$).
+ 
+ If we take a normal distribution as a sample distribution with a normal
+ distribution theoretical model we can calculate the expected value of the
+ theoretical model as the average of the sample we have, and the standard
+ deviation of the theoretical model decreases with the number of data compared
+ to the standard deviation of the sampling distribution
+ ($\frac{\sigma}{\sqrt{n}}$). The sampling distribution of $\bar{X}$ is N$\left(
+ \mu, \frac{\sigma^2}{n}\right)$.
+ 
+ For calculating the variance dividing with $n-1$ is important to make the
+ estimator unbiased, while dividing with $n$ will result in a bias estimator.
+ 

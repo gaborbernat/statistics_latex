@@ -1,4 +1,4 @@
-<<label=correlation, fig=TRUE, echo=TRUE>>=
+<<label=correlation, fig=TRUE, echo=FALSE>>=
 Countries = read.table('LifeGDPhiv.txt')
 colnames(Countries) = c('Country', 'LifeExp', 'GDP', 'HIV')
 attach(Countries)
