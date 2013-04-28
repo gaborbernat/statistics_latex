@@ -10,11 +10,11 @@ instance of the variable we call the \emph{observed value} or
 
 \begin{description}
   \item[quantitive] variable take numerical values for which arithmetic
-  operations make sense. The height of the people is a such variable;
+  operations make sense. The height of the people is a such variable,
   \item[caterogical] variable consist of records into which the observation
-  falls into (one of several categories). For example countries may be
-  classified to one of the five great continets: Europe, America, Africa, Asia
-  and the Pacific;
+  falls into (one of several categories). For example the countries of the
+  world may be classified into one of the five great continets: Europe, America,
+  Africa, Asia and the Pacific,
   \item[ordinal] variable have natural order, however the difference between two
   instance of the variables does nt always make sense. A good example is grades
   given by a teacher: A, B, C, D, E, F.
@@ -48,26 +48,27 @@ show the minimum and the maximum values.
 \includegraphics{1/boxplot-boxplot}
 \end{figure}
 
-Note that the median, first or thrid quartil may result in a non--integer
+Note that the median, first or thrid quartile may result in a non--integer
 position. In this case these values are calcualted by interpolating them from
 the nearby observations, with the given percentage; therefore, it may happen that
 these values are not part of the variable instances.
 
 \subsubsection{Modified boxplots}
-Outliers (known as extreme observation values, or unusual observations) are hard
-to study on a boxplot, so for them we use the modified boxplot. For this let us
-first define the inter-quartile range (noted as \emph{IQR}) as the difference
-between the $3$rd and the $1$st quartile. Then we can define the inner fences as the:
+Outliers (known as extreme values, or unusual observations) are hard
+to study on a classical boxplot, so for them we use the modified boxplot. In
+this case let us first define the inter-quartile range (noted as \emph{IQR}) as
+the difference between the $3$rd and the $1$st quartile. Then we can define the
+inner fences as the:
 
 \begin{description}
   \item[lower fence]  is $=1$st quartile $- ~1.5\cdot $IQR, and the  
   \item[upper fence]  is $=3$st quartile $+ ~1.5\cdot $IQR.  
 \end{description}
 
-Now the place of the minimum value on the boxplot is taken over by the lower
-fence, while the upper fence for the maximum. Observations smaller than the
-lower fence, or larger than the upper fence are drawn with teir own circle on
-the plot as shown on figure \ref{fig:boxplot_modified}.
+Now the lower whisker is noted as the lower fence, while the upper fence as the
+upper whisker. Observations smaller than the lower fence, or larger than the
+upper fence are drawn with their own circle on the plot as shown on figure
+\ref{fig:boxplot_modified}.
 
 \begin{figure}[htbp]
 \label{fig:boxplot_modified}

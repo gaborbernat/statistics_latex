@@ -1,5 +1,5 @@
 <<label=boxplot_modified, fig=TRUE, echo=FALSE,width=8>>=
-allData <- read.table('SkeletonData.txt', header=TRUE) # read in the whole file
+allData <- read.table('head.txt', header=TRUE) # read in the whole file
 lifeExpentancy = allData[,6]                # extract second column
 boxplot(lifeExpentancy, col="lightgray")    # draw a boxplot, with lightgray inner color
 
