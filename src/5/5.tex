@@ -1,0 +1,305 @@
+\section{Statistical Tests of Significance}
+
+Suppose that we observe the difference between two groups, the question now is
+that is the difference significant or not? It's the answer to the question could
+that be just due to change; or it says something else about the nature of the
+date. 
+
+Once we collect data from the real world, we already saw how we can construct
+models that about the theoretical world. Based on the models we can make some
+conclusions about our situation in the real world. For instance, if we collect
+samples from a population by examining the sample set we may draw conclusions
+about the entire population. The test of significance is about is our
+observation is only due to chance or it may even shed light on some wrongful
+asssumptions about the theoretical world. 
+
+For example, assume we have the life expectancies of the countries in East--Asia
+and the Sub--Saharan Africa. We can see that on average this is smallre for the
+African region, however is this just an effect of the natural variability of
+data, or holds something more to it. To observer this we construct a theoretical
+model that assumes that there is no difference between the groups. We are either
+searching for proof of this or some contradiction, based on our data amassed.
+
+\subsection{The structure of the statistical test}
+
+\subsubsection{Assumption}
+
+Statistical math is like proof by contradiction in math. We start out by
+assuming something. Then we observe the date, do some calculations and
+eventually end up with a contradiction; such we conclude that there must be
+something wrong about our assumption, our theoretical model. Of course, we are
+in the domain of statistic something is wrong is actually meaning that the model
+is unlikely to hold true in the real world.
+
+\emph{Tests} are used to answer questions about the theoretical world, and the
+goal is to check if the data collected provides enough evidence that the
+theoretical model holds in the real world. Statistical tests are also called
+hypotetical test, or tests of significance. The first step of any statistical
+test is to formulate the hypothesis: is the flipping of a beer cap like a coint
+flipp? Afterwards you need to state an alternative to the hypothesis.
+
+A real world analogy is a court case. We start out from the assumption that
+everyone is innocent until proven otherwise. In statistics this corresponds to
+the \emph{null hypothesis}  ($H_0$ -- pronounced as ,,H-naught''). This states
+that nothing is happening; that is that there is no relationship, no difference.
+We assume that this is true and check weather our date support it or contradicit
+it.
+
+The \emph{alternative hypothesis} corresponds to the guilty alternative in the
+court case, and it corresponds usually to what the reaseach tries, wants to
+show (noted as $H_a$ or $H_1$ or $H_A$). We may conclude that this is true if we
+can proove that $H_0$ is false, in other words rule out that any difference
+between $H_A$ or $H_0$ is due to chance.
+
+Alternatives may be \emph{one--} or \emph{two--sided}. One sided is the case of
+the beer cap, our assumption holds true or not; while a two sided example is the
+effect of plastical surgery on the perceived age of a person, here our null
+hypothesis is that there is no change, and we have two alternative, they either
+look younger or older.
+
+\subsubsection{The evidence}
+In the court to proove our claim we'll need evidence. In statistics the
+evidences are proovided by the data we have. In order to make it useful we have
+to summarize our data into a \emph{test statistic}; whcih is a numeric
+representation of our data. This is always formulated such that it's assumed
+that the null hypothesis holds. In case of the plastic surgery we summarize data
+assuming that the perceived age difference is zero, to support our null
+hypothesis.
+
+\subsubsection{Delibiration}
+Once the evidences are presented the judge/jury delibirates if beyond a
+reasonable doubt the null hypothesis holds or not. In statistics the tool of
+delibiration is the \emph{p--value}. This transforms a test statistics into a
+probability scale; a number between zero and one that quantifies how strong the
+evidence is against the null hypothesis.
+
+At this point we ask, if the $H_0$ holds how likely would it be to observe a
+test statistic of this magnitude or large just by chance? The numerical answer
+to this question is the p--value. The smaller this is the stronger evidance it
+is against the null hyptothesis. However, it is not an a measurement to tell you
+how likely it is that the $H_0$ is true.
+
+$H_0$ is or it is not true, however it's not a random variable, because it's
+either true or not true, no randomness involved. The p--value just tells you how
+unlikely the test statistic is if the $H_0$ were to be true.
+
+\subsubsection{The verdict}
+
+The fourth final step is the verdict. Not strong enough evidance corresponds to
+a high p--value. With this we conclude that the data is consistent with the null
+hypothesis. However we haven't yet prooved that it's true, although we cannot
+reject it either. A small p--value consist of sufficient evidence against $H_0$,
+and we may reject it in favour of $H_A$. In this case the result is
+statistically significant.
+
+It remains one question to be answered: how small is small? There's no clear
+rules on this, hower it's a good practice that $p<0.001$ is very strong, $0.001
+< p < 0.01$ is strong, $0.01 < p < 0.05$ is moderate, while $0.05 < p < 0.1$ is
+weak. A larger p--value holds no strength against $H_0$. The cut off value you'l
+want to use is context based, with smaller values if that would lead to
+inconveniances.
+
+If there is not enough evidence to reject the null hypothesis, the conclusion of
+the statistical test is that the data are consistent with the null hypothesis.
+The null hypothesis cannot be proven true. For example, imagine an experiment
+where a coin is flipped $100$ times and we observe $52$ heads. The null
+hypothesis may be that the coin is fair and the probability of heads on any flip
+is $0.5$.
+The alternative hypothesis would be that the probability of heads on any one
+flip is not $0.5$.
+
+The observed data show $52$ heads out of $100$ flips and that is not convincing
+evidence to reject the null hypothesis. These data are consistent with the null
+hypothesis $p=0.5$ but would also be consistent with a null hypothesis that the
+probability of heads is $0.5000001$ or $0.501$ or $0.52$ or many other values.
+
+\subsection{Hypothesis Testing for Proportions}
+
+We'll use the following situation to visualize: there has been a poll with
+$n=1,046$ people from which $42\%$ said that they support the mayor. So the true
+support for the mayor is unknown ($p$), however the estimated is $\hat{p}=0.42$.
+What we want to know if the true support is less than $50\%$:
+
+\begin{itemize}
+  \item $H_0: p = 0.5$
+  \item $H_A: p < 0.5$
+  \item Question: can we reject $H_0$?
+\end{itemize}
+
+We want to compute the p--value. We start out from our theoretical model, that:
+
+\[ \mbox{test statistic} = \frac{\hat{p}-p}{\sqrt{p\cdot\frac{1-p}{n}}} \approx
+\mbox{Normal}(0,1)
+\]
+
+Now by doing the substitution for the known values:
+
+\[ \frac{\hat{p}-p}{\sqrt{\frac{1}{2}\cdot\frac{1-\frac{1}{2}}{1046}}} \approx
+\mbox{Normal}(0,1)
+\]
+ 
+Now assumign $H_0$ is true $\hat{p}-p=0.42-0.5=-0.08$. So our p--value is the
+probability of observing this value under the $H_0$ hypothesis:
+
+\[ \mbox{P}(\hat{p}-p < -0.08) = \mbox{P} \left(
+\frac{\hat{p}-p}{\sqrt{\frac{1}{2}\cdot\frac{1-\frac{1}{2}}{1046}}} \leq 
+\frac{-0.08}{\sqrt{\frac{1}{2}\cdot\frac{1-\frac{1}{2}}{1046}}} \right)
+\approx \mbox{P}\left( \mbox{Normal} \left( 0,1\right) \leq -5.17 \right)
+\approx \frac{1}{9,000,000}
+\]
+
+This is an extremly small value, which means that our evidence against the null
+hypothesis is strong, therefore we may reject it, and conclude that the mayors
+support is less than $50\%$. If we were to put in a lower number into the
+equation we may check just how small the mayors support it is. For example in
+case of $44\%$ we'l get a numbe of $0.0968$, which means that under the null
+hypothesis we have a $\approx 10\%$ chance to sample this, and that's not a
+strong evidence aginst $H_0$.
+
+If we have a two sided hypothesis then instead of P($Z \geq$  test statistic) we
+can say that P($|Z| \geq$  test statistic)=P($Z \geq$  test statistic) $+$
+P($Z <-$  test statistic), which in case of symmetric distributions
+translates to $2\cdot$P($Z \geq$  test statistic).
+
+\subsection{Hypothesis Testing for Means}
+
+As test case for this we'll use the plastic surgery data, where we were
+interested just how much younger are people perceived after the surgery. The
+question is that all patiance will look younger or have we been just lucky? We
+had $n=60$ persons in the survey, where after the surgery people looked younger
+on average with $\bar{X}=7.177$ years with a standard deviation of $2.948$
+years.
+
+So formulating the problem we can say that in the real world we have the true
+mean (noted as $\mu$), with an estimated mean of $\hat{\mu}=\bar{X}=7.177$. Our
+null hypothesis is that people do not look younger, $H_0:~\mu=0$; with hour
+alternative hypothesis is that $H_A:~\mu>0$. Now we saw previously that:
+
+\[ \frac{\bar{X}-\mu}{\sqrt{\frac{s^2}{n}}}  \approx t_{n-1}
+\]
+
+We also know from our observation that $\bar{X}-\mu=7.177-0=7.177$. The p--value
+is the probability of observing such an extreme value given that $H_0$ is true.
+
+\[ \mbox{P} \left( \bar{X} - \mu \geq 7.177\right) = 
+\mbox{P} \left( \frac{\bar{X}-\mu}{\sqrt{\frac{s^2}{n}}} \geq
+\frac{7.177}{\sqrt{\frac{s^2}{n}}}  \right)
+\]
+Now we got something for what we know its distribution, it's:
+
+\[ \mbox{P} \left( t_{59} \geq \frac{7.177}{\sqrt{\frac{(2.948)^2}{60}}}\right)
+= \mbox{P} \left( t_{59} \geq 18.86 \right) = \frac{1}{10^{26}}
+\]
+
+Which is really small, and such we can reject the null hypothesis.
+
+\subsection{Powerand Type I and Type II Errors}
+
+We start out from the null and the alternative hypothesis. We then calculate
+thep p--value representing the probability of observing the value of the test
+statistic given that $H_0$ is true. Small p--values are evidence against the
+$H_0$.
+
+\begin{description}
+  \item[significance level] of a test gives a cut--off value for how small is
+  small for a p--value. We note it with: $\alpha$. This gives a definition for
+  the reasonable doubt part of the method. It shows how the testing would
+  perform in repeated sampling. If we collect test statistics again and again
+  sometime we'll get weird data. So for a significance level of $1\%$ in case of
+  $100$ we'll draw the wrong conclusion in one case (reject $H_0$). Setting it
+  to small however would result that you never reject $H_0$. 
+  \item[power] of the test is the probability of making a correct decision (by
+  rejecting the null hypothesis) when the null hypothesis is false. Higher power
+  tests are better at detecting false $H_0$. To do this you'll need to:
+  \begin{itemize}
+  \item power increases the further our alternative hypothesis is from the null
+  hypothesis (however in practice this is rarely in our control), 
+  \item $\alpha$ is increased then less evidence is required from the data in
+  order to reject the null hypothesis; therefore for increased $\alpha$, even if
+  the null hypothesis is the correct model for the data, it is more likely that the null
+  hypothesis will be rejected;
+  \item less variability increases,
+  \item increasing the sample sizea also helps.
+\end{itemize}
+ To determine the sample size needed for the a study for which the goal is to
+ get a significant result from a test, set $\alpha$ and the desired power,
+ decide on an alternative value that is practically interesting, estimate
+ $\sigma$, and calculate the sample size required to to give the desired power.
+ \item[type I error] is incorrectly rejecting the null hypothesis, as we got
+ data that seemed unlikely with the data we got. For a fixed significance level
+ $\alpha$ the probability of this happening is $\alpha$.
+ \item[type II error] is incorrectly not rejecting the null hypothesis, the
+ probability of this is $\beta = 1 - \mbox{power}$. This usually happens because
+ we do not have enough power due to small data size.
+\end{description}
+
+Generally we would like to decrease both types of errors, which can be done by
+increasing the sample size (as having more evidence in a trial). It's context
+dependent which of the errors are more important.
+
+\subsection{Potential pitfalls to look out for}
+
+Do not miss interpret p--values. It does not tell you how likely it is that
+$H_0$ is true. It tells you how likely the observed data would be if $H_0$
+holds. The p--value is a measure of significance. Therefore report it whenever
+you make conclusions.
+
+Data collection matters! Testing cannot correct flaws in the design of the data
+collection: not randomly choosing samples, lack of control, lack of randomising
+in assigning treatments. All these would lead to bias, confounding and variables
+inable to make conclusions.
+
+Always use two--sided test, unless you're sure apriori that one direction is of
+\emph{no} interest.
+
+Statistical significance is not the same as practical significance. Just because
+it's significant statistically it does not mean that it's also meaningful
+practicaly. For example let us suppose we want to measure the tempatures of
+people. For this we'll use a huge sample size, compared to the small already
+existing one.
+
+The increased sample size means that even a small difference from the expected
+mean temperature under the null hypothesis may be declared statistically significant.
+For example we could demonstrate that a difference of $0.005$ degrees would be
+significant statistically. While this is very precise, there is not much
+practical significance especially because most commercial thermometers do not
+measure the temperature with such a high precision.
+
+A large p--value does not necessarily means that the null hypothesis is true.
+There may not be enough power to reject it. Small p--values may happen due:
+
+\begin{itemize}
+  \item chance,
+  \item data collection issues (lack of randomization),
+  \item violation of the conditions required by the testing procedure used,
+  \item or because the null hypothesis is false.
+\end{itemize}
+
+If multiple tests are caried out, some are likely to be significant by chance
+alone. So we need to be suspicious when you see few significant results when
+many tests have been caried out; such as significant results on a few subgroups
+of data.
+
+Test results are not reliable if the statement of the hypothesis are suggested
+by the data. This is called \emph{data snopping}. Generally the primary
+hypothesis should be stated before any data is collected. Seeing some relation
+in the data and testing for it is not good, as in this the p--value does not
+says anything.
+
+The tests presented here require:
+
+\begin{itemize}
+  \item independent observations
+  \item the sampling distributions of the estimators to be (approximately)
+  normally distributed.
+\end{itemize}
+
+Any statistical test is deemed robust if it is not dependent on this
+requirements. While the independent is hard to go around, the sampling
+distribution is not. A good example of this is that although we have discrete
+values, for instance in case of a coin flip, we can still use the test method
+although the norma distribution is continous.
+
+Start with explanatory analysis using plots and summary statistics. If you can't
+visualize it you may wonder if its important even if from a statistical point of
+view it's significant.
