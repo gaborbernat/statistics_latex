@@ -1,0 +1,117 @@
+\chapter*{The Process of Statistical Inquiry}
+
+\addcontentsline{toc}{chapter}{The Process of Statistical Inquiry}
+\setcounter{section}{0}
+\renewcommand*{\theHsection}{ch8.\the\value{section}}
+
+In the process of statistical inquiry it's essential to understand the  context:
+which data, how collected, on whom and for what? We should always keep this in
+mind while analysing the numbers. The sequence of steps in a study are:
+
+\begin{description}
+  \item[formulate] a clear (perhaps single) focused research question. Sometimes
+  research questions may evolve, and in this case it's important and required to
+  confirm them with future studies and new data. 
+  
+  We make statistical studies for two reasons: build a model for making
+  \emph{predict}ions or to enhance \emph{understanding of the relationships}
+  between variables (where they occur and their nature). In case of the later to
+  specify a single research question, one primary purpose (that is to study one
+  outcome variable).
+  
+  In case of data mining or machine learning the goal is to build predictive
+  models from large amounts of data, often without an explicit research
+  question. Data mining work tends to be more algorithmic than based on
+  probability models and statistical properties.
+  \item[design and implement] a study to acquire data that are relevant to the
+  research question.
+  \item[examine] the data for problems.
+  \item[carry out preliminary and then formal] analyses
+  \item[iterpret and present] the results
+\end{description}
+
+\section{Formulate}
+
+A clearly stated purpose makes the results of any study more compelling. It is
+always the case that performing multiple tests increases the chance of making a
+type I error, as would be the case if we were to perform a statistical test
+repeatedly for each of multiple outcome variables.
+
+Sometimes investigators specify multiple outcomes, and then insist on a smaller
+significance level for their tests in order to avoid type I errors. But this
+reduces power compared to a larger significance level for one outcome, and thus
+increases the chance of making a type II error. 
+
+Be cautious of studies that investigate many outcomes, and emphasize only the
+statistically significant findings. Non-significant findings are interesting
+too. And type I errors are not interesting. When planning a study, a clear
+question, with a clear difference of interest, with a desired significance level
+and power, are necessary to calculate the required sample size for the study.
+
+In this quest we first must formulate our primary question. Then follow this up
+with some potential secondary question. For each of this question we must
+formulate a variable that measures accuratly and obiectivly the answer to those
+question. Then we need to separate the explanatory and the outcome variables.
+
+\section{Design}
+
+We want to design and implement a study to acquire data that are relevant to the
+research questions. To do this we need to be able to generalise conclusions to a
+population of interest, avoid any systematic error (biases) in both the
+measurements and conclusions, reduce the non systematic error caused by the
+natural variability for more precises estimates and power in our conclusions,
+and ensure that the sample is appropiate to have enough power to make
+conclusions (and to avoid making unnecessary measurements).
+
+The first question is what kind of study to carry out:
+
+\begin{description}
+  \item[anecdotal] Anecdotal evidence doesn't lead to conclusions that can be
+  generalized beyond the current observations.
+  \item[sample survey] (poll) requires to be able to make measurements only with
+  questions 
+  \item[observational study] while allows to conduct the observations in the
+  experimental units natural enviroment, it does not allow making casual
+  conclusions. However, it carries the risk of common cause and confounding
+  variables.
+  \item[experiment] if controlled and ramomized allow us to make full inference.
+  The principles of an experimental design is control (what we can -- hold
+  some variables constant, use of blocking -- choose subjects appropiately
+  with inclusion and exclusion criterias), randomisatio (selection of
+  experimental units and assigment of treatments)n and replication (number of
+  subjects to acquire statistically significant results).
+\end{description}
+
+\section{First look at the data}
+
+At this step we need to identify problems in the data and also some of the
+preliminary analisys. Look for obvious errors and identify features (outliers,
+skew, etcetera) that may effect the choice of analysis. 
+
+For categorical variables use barplots and pie charts. For quantative variable
+use boxplots and histograms. Missing values, if they are completly random, will
+not introduce bias into the results. However, if they missing is due to some
+causual effect then those values are informatitive and their lack may
+potentially lead to bias results.
+
+\section{Formal analysis}
+
+Formal and preleminary analysis are an interative process. What you learn from
+formal analisys may cause to look at the data in new ways, which then will lead
+to new formal analysis.
+
+Although the t--test is a very robust measurement, it does not works in every
+situation (non normal distribution), so it's important to take a look at the
+date first prior to applying it. The removal (or lack) of outliers will give
+more power for our statistical tests (resulting in lower p--values).
+
+The central limit theorem needs large sample sizes when making comparisions with
+proportions that are close to zero. There are cases that were not covered inside
+this course: 
+
+\begin{description}
+  \item[analysis of variance] to compare more than two means
+  \item[longitudinal analysis] analyse not just the difference (and start plus
+  end point) between two values, but the way those two variables got there. 
+  \item[control the chance] of making type I errors in multiple tests.n
+\end{description}

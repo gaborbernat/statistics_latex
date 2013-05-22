@@ -1,6 +1,9 @@
-\section{Making sense of data}
+\chapter*{Making sense of data}
+\addcontentsline{toc}{chapter}{Making sense of dataset}
+\setcounter{section}{0}
+\renewcommand*{\theHsection}{ch1.\the\value{section}}
 
-\subsection{Data categorization}
+\section{Data categorization}
 
 An \emph{observational unit} is the person or thing on which measurements are
 taken. Note that this can also be a case, object, a subject and so on. A
@@ -21,7 +24,7 @@ instance of the variable we call the \emph{observed value} or
    
 \end{description}
 
-\subsection{Quantative variables}
+\section{Quantative variables}
 
 One way of making sense of a quantitive variable is to use the \emph{five
 number summary}. Given a collection of a observations we can calculate the: 
@@ -53,7 +56,7 @@ position. In this case these values are calcualted by interpolating them from
 the nearby observations, with the given percentage; therefore, it may happen that
 these values are not part of the variable instances.
 
-\subsubsection{Modified boxplots}
+\subsection{Modified boxplots}
 Outliers (known as extreme values, or unusual observations) are hard
 to study on a classical boxplot, so for them we use the modified boxplot. In
 this case let us first define the inter-quartile range (noted as \emph{IQR}) as
@@ -76,7 +79,7 @@ upper fence are drawn with their own circle on the plot as shown on figure
 \includegraphics{1/boxplot_modified-boxplot_modified}
 \end{figure}
 
-\subsubsection{Mean}
+\subsection{Mean}
 Given a list of observations ($x_1, x_2, \ldots x_n$), the mean of the variable
 is noted as $\bar{x}$ (or $\mu$) and is calculated as: 
 \[ \mbox{Mean} = \bar{x} = 
@@ -91,7 +94,7 @@ the lowest and highest values from the observations, before performing the same
 operation to calculate the \emph{trimmed--mean}. The input of the trimmed mean
 is the percentage of outliers to remove. 
 
-\subsubsection{Spread of the data}
+\subsection{Spread of the data}
 
 The range of the data is the difference between the maximum and the minimum.
 This is not a robust measurement. The same can be told about the IQR too. The
@@ -107,7 +110,7 @@ anything about deviation. The \emph{standard deviation} (also noted as $\sigma$)
 is the square root of this ($\sqrt{\mbox{variance}}$), and shows the dispersion of a set of data from
 its mean.
 
-\subsubsection{The shape of the data - histogram}
+\subsection{The shape of the data - histogram}
 
 \begin{figure}[htbp]
 \label{fig:histogram}
@@ -138,14 +141,14 @@ histogram are on its left or right side, where its extreme values are. A
 histogram is left skewed if it has the left tail larger than the right, and
 right skewed if the right tail  is larger than its left. 
 
-\subsubsection{Empirical rule}
+\subsection{Empirical rule}
 
 The empirical rule (also know as three $\sigma$ rule) states that for a normal
 distribution $68\%$ of the data is within one standard deviation of the mean
 value, $95\%$ is within two standard deviation, and $99.7\%$ is within three
 standard deviation.
 
-\subsection{Categorical variables}
+\section{Categorical variables}
 
 Caterogical variables are not represented by numbers, so all of the earlier
 statistics no longer make sense. What does make sense is the frequency of the

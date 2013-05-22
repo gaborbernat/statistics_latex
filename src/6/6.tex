@@ -1,0 +1,228 @@
+\chapter*{Tests, Confidence Intervals, and Comparing Two Samples}
+
+\addcontentsline{toc}{chapter}{Tests, Confidence Intervals, and Comparing Two Samples}
+\setcounter{section}{0}
+\renewcommand*{\theHsection}{ch6.\the\value{section}}
+
+One may ask what relation there is between the confidence intervals (what's a
+range of plasauble values for a quantity) and the hypothesis testing (provides a
+\emph{yes} por \emph{no} answer indicating if we can reject the null hypothesis
+or not)? There exist one relation between two--sided confidence intervals and
+two--sided hypothesis test. To illustrate this let us consider the bottle cap
+tossing experiment: 
+
+\begin{description}
+  \item[hypothesis test] the null hypothesis is $H_0: p=0.5,$ versus the
+  alternative hypothesis $H_A: p \neq 0.5$ (two--sided). We have $n=1000$
+  observations, which gives an estimated probability $\hat{p}-0.576$, so
+  $|\hat{p}-0.5|=0.076$. This results in a p--value $=P(|\hat{p}-0.5| \geq
+  0.076) \approx P(|\mbox{Normal}(0,1)| \geq 4.81) = \frac{1}{663,000} <
+  0.05 (\mbox{typical significance level})$, so we reject the null hypothesis.
+  
+  \item[confidence interval] the $95\%$ confidence interval is $\hat{p} \pm
+  1.96 \sqrt{\frac{p(1-p)}{n}}$, where $1.96$ is the critical value
+  taken from the standad normal distribution (multiplied by the standard
+  deviation) $= [0.545, 0.607]$, which misses the $0.5$.
+\end{description}
+
+So we got somehow the same result by using two different methods. This is not
+chance, this happens generaly a lot. Thus it can be said that we reject the null
+hypothesis exactly when the confidence interval misses the expected average
+value.
+
+If one considers a single sample, and considers a two sided test versus a two
+sided confidence interval then it's exactly the same thing at whatever
+significance level $\alpha$, to reject the null hypothesis or the corresponding
+confidence interval does not includes the null hypothesis value. 
+
+The range of plasauble values  will include a certain particular value if and
+only if that particular value would have been rejected by the corresponding
+hypothesis test.
+
+
+For a sampled data, as the confidence level is increased, the width of the
+confidence interval also increases. For example for a reported p-value of
+$0.02$, and $\mu=97$, all confidence intervals with a confidence level equal to
+or greater than $98\%$ will contain $97$ as a plausible value for $\mu$. All
+confidence intervals with confidence level less than $98\%$ will not contain
+$97$ as a plausible value for $\mu$.
+
+\section{Matched pairs}
+
+There are situations when we no longer need to observe a single variable.
+Sometimes there are two different measurements/groups, and tell if these two
+differ. This section will look into methods to do just this. 
+
+As case study let us take the antrepology example, that is estimating the age
+of death for persons taken from observing bones. Our observation values are the
+errors of the methods from the actual ages of death. The DiGangi method tends to
+underestimate the age of death, as for more than $75\%$ of measurements the
+error is negative. This is on average $\approx -14$. 
+
+The Suchey--Brooks method uses different bone to estimate, though may offer
+different values. The mean for this is $\approx -7$, so this too underestimates.
+However, these numbers are taken from just a handful ($n=400$) samples, so the
+question rises are these two methods actually different?
+
+\emph{Matched pairs} are useful when we want to compare two conditional
+variables, and we are able to compare them on the same or two very similar
+observational or experimental units (same subject, or twins/siblings). For
+example age estimates on the same skeletons with different methods, or testing
+the same subjects under two different condition (pre and post course).
+
+However, the matching can also be time, like when we want to compare two
+branches of a business, and we compare sales for the same week. The
+\emph{crossover study} is when we have two treatments, and we compare their
+outcome by giving to each experimental unit first one treatment, and then the
+other one.
+
+This means that we do not need to randomize experimental units, as
+everyone will get all treatments. However, the order each experimental unit
+receives the treatment is randomized, to avoid cases that the effect of a later
+treatment is affected by an earlier treatment. Therefore, the variation in the
+comparision does not include the variation among observational or experimental
+units, resuling in a greater precision in the estimate of the difference between
+the treatments or conditions being compared.
+
+Measurements on a matched pair are not independent, resulting in the better
+precision, however the analysis must reflect the pairing. The general approach
+is to treat each pair as a separate observation, and then they will all be
+independent, because each sceletong is independent. A way to do this is to
+take the difference between the two methods as a new observed variable.
+
+A practical problem is that what we do for experimental units for which one of
+the measurements is missing, not available? An easy solution is to just ignore
+these. Now let the difference be noted as $d$. We state our null hypothesis that
+there is not difference between the methods, that is $H_0: \mu_d=0$ versus
+$H_a: \mu_d \neq 0$. From our dat we know what $\bar{X}_d=6.854, s_d = 11.056$,
+and $n=398$. We can formulate the test statistic as:
+
+\[ \frac{\bar{X}_d - 0}{\frac{s_d}{\sqrt{n}}} = \frac{6.854 -
+0}{\frac{11.056}{\sqrt{398}}} \doteq 12.37 
+\]
+
+If the null hypothesis is true this test statistic should be a value from a
+t--distribution with a $398$ degree of freedom. The degree is quite high, so the
+t--distribution is very close to the standard normal distribution. In case of a
+standard normal distribution $99.7\%$ of data is within three standard
+deviation, that is between $[-3,3]$. So a value greater than $12.37$ or smaller
+than $-12.37$ is very unlikely. If one were to calculate a p--value it would
+contain $29$ zeros after the decimal point.
+
+We can conclude that we have an extremely strong evidence that the null
+hypothesis is not true. So the two methods results differ, in giving the mean of
+the age error estimation.
+
+To construct the confidence interval with a $95\%$ confidence, for a data set
+with $398$ observation we need to take a t--distribution with $397$ degree of
+freedom, for whoose area is $0.95$, thush resulting in the critical values of
+$-1.96$ and $+1.96$: 
+
+\[ \bar{X}_d \pm \mbox{critical value} \cdot 
+\frac{s_d}{\sqrt{n}} = 6.8554 \pm 1.966 \cdot \frac{11.056}{\sqrt{398}} \doteq
+[5.76, 7.94 ] \]
+
+Therefore, we estimate the difference between the two methods is low as $5.76$
+and high as $7.94$. Because the hypothesis test held a strong evidence that the
+mean of the difference is not zero, this confidence interval does not contains
+the zero value.
+
+It's important to understand that multiple measurements on the same subject are
+not independent since two measurements within one subject are more likely to be
+similar than two measurements on different subjects. For example, two math test
+scores for the same student will likely be more similar than math test scores
+chosen from two random students.
+
+\section{Comparing two proportions}
+
+In this case again we have two different conditional variables, however now they
+are no longer result of observing the same experimental unit, they are
+independent:
+
+\begin{itemize}
+  \item sample size $n_1$, success fraction $\hat{p}_1$,
+  \item sample size $n_2$, success fraction $\hat{p}_2$.
+\end{itemize}
+
+What we are interested is $\hat{p}_1 -\hat{p}_2$, which has a mean of $p_1-p_2$,
+with a variance calculated as Var($\hat{p}_1-\hat{p}_2)=\mbox{Var}(\hat{p}_1) +
+(-1)^2 \cdot
+\mbox{Var}(\hat{p}_2)=p_1\cdot\frac{1-p_1}{n_1}+p_2\cdot\frac{1-p_2}{n_2}$. If
+the two variables are reasonably large sized then the central limit theorem
+still applies and we can say that $\hat{p}_1 - \hat{p}_2 \approx \mbox{Normal}$
+$\left(p_1-p_2, \frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}\right)$, that is
+it approximatly follows the normal distribution. 
+
+Again we transform this to a standard normal distribution:
+
+\[ \mbox{Normal}(0,1) \approx \frac{(\hat{p}_1 - \hat{p}_2) - (p_1 -
+p_2)}{\sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}}
+\]
+
+Now the problem is that the value of $p_1$ and $p_2$ are unknown. For confidence
+intervals one can approximate $p_1$ with $\hat{p}_1$, and $p_2$ with $\hat{p}_2$
+respectively. At this moment for a $95\%$ confidence interval we can calculate:
+
+\[ \hat{p_1} - \hat{p_2} \pm 1.96
+\sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1}+\frac{\hat{p}_2(1-\hat{p}_2)}{n_2}} \]
+
+From the resulting confidence interval one may conclude if the difference
+changed, either in a positive or a negative direction.
+
+In case of a hypothesis test the same logic applies, let there be $H_0: p_1 =
+p_2$ versus $H_A: p_1 \neq p_2$, knowing that $ \mbox{Normal}(0,1) \approx
+\frac{(\hat{p}_1 - \hat{p}_2) - (p_1 -
+p_2)}{\sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}}$. Now under $H_0$,
+we assume that $p_1=p_2$, so we approximate both of the $p_1$ and $p_2$ with 
+$\hat{p}=\frac{n_1\cdot \hat{p_1} + n_2 \cdot \hat{p_2}}{n_1 + n_2}$, also
+refered as the pooled estimate. Therefore, we can say that: 
+
+\[ \mbox{Normal}(0,1) \approx \frac{(\hat{p}_1 - \hat{p}_2) - (p_1 -
+p_2)}{\sqrt{\hat{p}\cdot(1-\hat{p})\cdot\left(\frac{1}{n_1} +
+\frac{1}{n_2}\right)}}
+\]
+
+This may be used to compute p--value: $P(|\hat{p_1}-\hat{p_2}| \geq \hat{p})$.
+
+\section{Comparing means}
+
+To compare the difference between two independent variables true means with a
+sample size of $n_1$ and $n_2$, means of $\hat{X}_1, \hat{X}_2$ and variance of
+$s_1^2$ and $s_2^2$ one can reuse the following fact:
+
+\[
+\frac{(\hat{X}_1-\hat{X}_2)-(\mu_1-\mu_2)}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_1^2}{n_1}}}
+\approx t_{df}
+\]
+
+The relation approximatly hold however the degree of freedom is given by the
+equation:
+
+\[ df = \frac{\left(\frac{s_1^2 }{n_1} + \frac{s_2^2 }{n_2} \right)^2} {
+\frac{\left(\frac{s_1^2 }{n_1}\right)^2}{n_1-1} + \frac{\left(\frac{s_2^2
+}{n_2}\right)^2}{n_2-1} } 
+\]
+
+Now the confidence interval for $\mu_1-\mu_2$ may be calculated as:
+
+\[ \hat{X}_1 - \hat{X}_2 \pm T_{\frac{\alpha}{2}, df} \sqrt{\frac{s_1^2}{n_1}
++ \frac{s_2^2}{n_2}}
+\]
+
+For hypothesis test, the null hypothesis test is that the difference is zero.
+Now we reusze the uppper approximation to compute p--values. Under the null
+hypothesis we cannot pool together the means, like we did for proportions unless
+we also assume that the two series have the same variance. The p--value may be
+found as:
+
+\[ \approx P \left( |t_{df}| \geq
+\frac{|\bar{X}_1-\bar{X}_2|}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} \right) 
+\] where the degree of freedom is calculated with the upper formula.
+
+If the variances are equal we can pool them, as under $H_0$ we have the same
+mean and variance, by using for both $s_1^2$ and $s_2^2$ the pooled variance:
+$s^2 = \frac{(n_1-1)\cdot s_1^2 + (n_2-1)\cdot s_2^2}{(n_1-1)+
+(n_2-1)}$. Under this assumption to calculation of degree of freedom simplifies
+to the forumla $df = (n_1-1)+(n_2-1) = n_1 - n_2 - 2$. Now, note that the
+sample variance does not need to be the same, what needs to be equal is the true
+variance of the samples ($\sigma_1^2$ and $\sigma_2^2$).

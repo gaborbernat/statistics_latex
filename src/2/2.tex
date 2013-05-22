@@ -1,6 +1,9 @@
-\section{Releationships and data collections}
+\chapter*{Releationships and data collections}
+\addcontentsline{toc}{chapter}{Releationships and data collections}
+\setcounter{section}{0}
+\renewcommand*{\theHsection}{ch2.\the\value{section}}
 
-\subsection{Relationship between quantitive and categorical variables}
+\section{Relationship between quantitive and categorical variables}
 
 Relationships are at the hearth of statistic. Let us consider an example. Let
 there be the unit of observation the worlds countries. Now we define on this two
@@ -26,7 +29,7 @@ groups defined by the categorical variable. We need to:
 
 So create a boxplot (or summary) for each categorical observation and compare.
 
-\subsubsection{In the R language}
+\subsection{In the R language}
 
 In the R lanugage we can draw a new boxplot per category to make the
 comparision. To separate categories we can use the \emph{split} function, and
@@ -53,13 +56,13 @@ boxplot(LifeExp~Region, range=0, border=rainbow(6),
 \includegraphics{2/boxplots-boxplots}
 \end{figure}
 
-\subsection{Relationship between two categorical variables}
+\section{Relationship between two categorical variables}
 
 For instance let there be the two observations the gender of persons and their
 body weight. One question we can ask is that are the same count of overweight
 female as man?
 
-\subsubsection{Distributions}
+\subsection{Distributions}
 
 Distribution types are:
 
@@ -91,7 +94,7 @@ Distribution types are:
   or not, having more old people in a group as observations may influence the
   result).
 \end{description}
-\subsubsection{Categorical values in R}
+\subsection{Categorical values in R}
 
 Categorical variables read into R are always sorted alphabetically, and
 therefore any statistics about it will be displayed on that order. However,
@@ -203,7 +206,7 @@ barplot(joint$prop.col, beside=FALSE, col=rainbow(4),
 
 as you can see it on figure \ref{fig:two_categorical}.
 
-\subsection{Relationship between two quantitive variables}
+\section{Relationship between two quantitive variables}
 
 One approach is to convert one (or both) of the quantitive variables into
 categorical variable and then just use the already seen methods. One way to
@@ -229,7 +232,7 @@ is the perfect negative. If this is a positive value when one increases the
 other tends to follow. However, note that this only captures the linear aspects
 of the relationship.
 
-\subsubsection{In the R lanuage}
+\subsection{In the R lanuage}
 
 For calculating the correlation we can use the \emph{cor} function.
  
@@ -253,7 +256,7 @@ cor(LifeExp, GDP)
 Figure \ref{fig:correlation} shows the information visually, when drawn on a
 plot.
 
-\subsection{Sampling}
+\section{Sampling}
 The goal of the statistics is to make rational decision or conclusion based on
 the incomplete information that we have in our data. This process is knows as
 \emph{statistical inference}. The question is that if we see something in our
@@ -333,7 +336,7 @@ Bias types are:
   represented.
 \end{description}
 
-\subsection{Observational studies}
+\section{Observational studies}
 
 Whenever we want to compare the effect of variables on each other we need to
 construct a study, for which sampling is really importat. Let us assume that we
@@ -383,7 +386,7 @@ the outcome. This may be a confounding variable, or the source of the common
 response , or another variable that, when considered, changes the nature of the
 relationship.
 
-\subsection{Experiments}
+\section{Experiments}
 
 Are the golden standard. Allows for making conlusions. Again the response
 variable (or also know as dependent variable -- how it depends from other

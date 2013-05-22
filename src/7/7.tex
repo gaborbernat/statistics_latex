@@ -1,0 +1,182 @@
+\chapter*{Linear Regression}
+
+\addcontentsline{toc}{chapter}{Linear Regression}
+\setcounter{section}{0}
+\renewcommand*{\theHsection}{ch7.\the\value{section}}
+
+Linear regression (or lines of best fit) may be used to understand linear
+relationship between data. For two variables the dependent (response) variable
+is noted as $Y$, while the independent (explanatory, predictor) variable is
+noted as $X$. The equation of a line looks like $y=b_0+b_1 \cdot x$. Now we try to
+come up for values for $b_0$ and $b_1$ which are the best they can be to
+describe the data as well as possible.
+
+For this one can assume that a given point ($x_i$) the $y_i$ may be calculates
+as $b_0+b_1 \cdot x_i$. However, the actual value we have is $y_i$ making the
+difference between them $y_i-(b_0+b_1 \cdot x_i)$ (residiual). Now we
+don't want them to be just small, because then they may turn negative, a nice way of
+doing this is to make the $(y_i-b_0-b_1 \cdot x_i)^2$ as small as possible.
+
+
+So for a whole dataset we will try to minimize the sum of squares:
+
+\[ SS = \sum_{i=1}^n (y_i-b_0-b_1 \cdot x_i)^2 \]
+
+This may be achieved by making:
+
+\[ \frac{\partial}{\partial b_0}SS = \frac{\partial}{\partial b_1} SS = 0 \]
+
+resulting in the formulas:
+
+\begin{align*}
+b_0 &= \frac{1}{n} \left( \sum_{i=1}^{n} y _i - b_1 \sum_{i=1}^{n} x_i \right)
+\\
+b_1 &= \frac{n \sum_{i=1}^{n} x_i \cdot y_i - \sum_{i=1}^{n} x_i 
+\cdot \sum_{i=1}^{n} y_i}{n \cdot \sum_{i=1}^{n} x_i^2 - \left(\sum_{i=1}^{n}
+x_i \right)^2}
+\end{align*}
+
+$b_0$ is also called the intercept and $b_1$ is the slope. A slope ($b_0$) of
+$\alpha$ means that when the explanatory variable increases by $1$ the response
+variable increases by $\alpha$. The intercept variable is what the response
+variable would be in case of an explanatory variable with zero value. It is how
+much we have to shift the line in order to get the line of best fit.
+
+Regression is not symmetric, that is if you swap the explanatory and the
+predictor variable the slope value will not turn out to be the inverse.
+
+\section{Regression Coefficients, Residuals and Variances}
+
+The intercept coefficient may be reformulated as:
+
+\[b_0 = \frac{1}{n} \left( \sum_{i=1}^{n} y _i - b_1 \sum_{i=1}^{n} x_i \right)
+ = \bar{y} - b_1 \cdot \bar{x} \] so, the regression line $y$ value
+ corresponding to $x_i$ is:
+ 
+ \[ b_0+b_1\cdot x_i = (\bar{y} - b_1 \cdot \bar{x}) + b_1 \cdot x_i =
+ \underbrace{\bar{y}}_{\mbox{start from mean}} + \overbrace{b_1 \cdot (x_i -
+ \bar{x})}^{\parbox[t]{5cm}{shift by how far we are \\ multiplied by the slope}}
+ \] 
+So, if $x_i=\bar{x}$, then we end up with $\bar{y}$, meaning that the point
+$(\bar{x}, \bar{y})$ is on the line.
+
+In case of the slope coefficient we can also reformulate, first by dividing top
+and bottom with $n^2$:
+
+\[ b_1 = \frac{\frac{1}{n} \sum_{i=1}^{n} x_i \cdot y_i -
+\left( \frac{1}{n} \sum_{i=1}^{n} x_i \right) \cdot \left(
+\frac{1}{n} \sum_{i=1}^{n} y_i \right)}{\frac{1}{n} \cdot \sum_{i=1}^{n} x_i^2 -
+\left(\frac{1}{n} \sum_{i=1}^{n} x_i \right)^2} \] and then rewrite it by adding
+in $\bar{x}$ and $\bar{y}$:
+\[ b_1 = \frac{\frac{1}{n} \sum_{i=1}^{n} x_i \cdot y_i -
+\bar{x} \cdot \bar{y}}{\frac{1}{n} \cdot \sum_{i=1}^{n} x_i^2 -
+\left(\bar{x} \right)^2}\] which can be rewritten to: 
+\[ \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})
+}{\frac{1}{n}\sum_{i=1}^{n}\left( x_i - \bar{x} \right)^2} = \frac{
+\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) }{\sum_{i=1}^{n}\left(
+x_i - \bar{x} \right)^2} = b_1 \].
+
+Now we'll reformulate this to: 
+
+\[ \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i
+- \bar{x})^2 \sum_{i=1}^{n}(y_i -
+\bar{y})^2}} \times \frac{\sqrt{\sum_{i=1}^{n}(y_i - \bar{y})^2}}
+{\sqrt{\sum_{i=1}^{n}(x_i - \bar{x})^2}} = b_1 = R \times \frac{s_y}{s_x}\],
+where $R$ is the correlation, and $s_x$ is the sample standard deviation for $x$
+with $s_y$ the sample standard deviation for $y$.
+
+The residiual is the difference between the actual and the predicted value, for
+the $i^{\mbox{th}}$ it may be calculated $e_i=y_i-b_0-b_1 x_i$, the mean
+$\bar{e}$ is $0$, as sometime we overshoot, sometime we underestimate however on
+average we get it just right. 
+
+\begin{align*}
+\mbox{Var} (e)&=\frac{1}{n-1}\sum_{i=1}^{n} (e_i -
+\bar{e})^2 \\ 
+&= s_y^2 + (R \frac{s_y}{s_x})^2 s_x^2 - 2 R \frac{s_y}{s_x}
+\frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) \\
+&= s_y^2 (1-R^2)\\
+&= \mbox{Var}(y)(1-R^2)
+\end{align*} 
+
+So we can conclude that regression multiplies the variance by $(1-R^2)$, that is
+the regression line ''reduces'' or ''removes'' a fraction of $R^2$ of the
+variance of the $Y$. That is the linear relationship explains $R^2$ fraction of
+the variation. The $R^2$ is the coefficient of determination and show how much
+ofthe data is explained by the linear relationship. If this is zero
+(correlation) it means that it explains nothing, while an $R^2=1$ explains
+everything, once you have $x_i$ you already know $y_i$. 
+
+
+\section{Regression Inference and Limitations}
+
+How much certainty is there on the values introduced in the earlier section?
+Maybe those values are right for the data world, however the true values (for
+the theoretical world) there may be slight variations. For the theoretical world
+we note the ''true'' slope as $\beta_1$. How close is the data world slope
+($b_1$) to $\beta_1$. It's true that the distribution of
+$\frac{b_1-\beta_1}{SE(b_1)} ${\raise.17ex\hbox{$\scriptstyle\sim$}} $ t_{n-2}$,
+that is it follows a t--distribution with $n-2$ degree of freedom (one degree
+loose for the slope, and one extra for the intersect). 
+
+The $SE(b_1)$ is the standard error involved given by the formula:
+
+\[ SE(b_1) = \frac{\sqrt{\sum_{i=1}^n e_i^2}}{\sqrt{(n-2) \sum_{i=1}^n (x_i -
+\bar{x})^2 }} \mbox{ where } e_i = y_i -b_0 - b_1 x_i
+\]
+
+Now, we can use this t--distribution to calculate (carry out) for the slope the: 
+
+\begin{description}
+  \item[confidence interval] of $(1-\alpha)$ for $\beta_1$ is $b_1 \pm
+t_{\frac{\alpha}{2}, n-2} SE(b_1)$
+	\item[hypothesis test] we start out again from
+the t--distribution written up, use the null hypothesis that $H_0: \beta_1 = 0$
+and the alternative that $H_A: \beta_1 \neq 0$.
+
+For the p--value we'll use the formula: P$(|b_1-\beta_1| \geq b_1)$ under the
+null hypothesis, which can be rewritten to P$\left(|t_{n-2}| \geq
+\frac{b_1}{SE(b_1)}\right)$. If the p--value is small we reject the null
+hypothesis, that is that there is no linear relationship. Note, that this does
+not implies causation, because that would require a randomised experiment. It
+only concludes that there is some kind of relationship.
+\end{description}
+ 
+As for limitations we can say that linear regression can only tell about linear
+relationship. It tells nothing for other relationships like (like quadratic).
+Moreover there are cases when even if we have perfect numbers, we  still cannot
+tell if the numbers tell, what they mean. Therefore, it's important to draw the
+data, and visualize it. Linear regression is not robust to the presence of
+outliers. Therefore, it's important whenever analyzing data that these may skew
+the results.
+
+The value of the slope $b_1$ should be interpreted relative to its standard
+error, $SE(b_1)$. For example, imagine a regression of weight on height for
+college students. We know that there is a strong positive association between these two
+quantities so it would not be surprising to be able to reject the null
+hypothesis that $\beta_1=0$. This will be true regardless of the units of
+measurement of either variable. 
+
+Note that the estimates of the slope and the standard error will change
+depending on the units of measurement. If weights are measured in kilograms but
+height in millimetres, $b_1$ and $SE(b_1)$ will be large values. If weights are
+measured in kilograms but height in kilometres, $b_1$ and $SE(b_1)$ will be
+extremely small values but there will still be strong evidence of a linear
+relationship between height and weight.
+
+\section{Residual Analysis and Transformations}
+
+The question will cover that are the two variables relationship well described
+by a linear relationship? For this we'll study the residual values (the
+difference between where a predicted value should be accoring to the linear
+regression, and where it actually is). In case of linear relationship the
+residiuals should not have any trend, there should be equally spread out in the
+space if one were to plot them.
+
+If the residual plot shows a trend it means that the linear relationship does
+not tells the whole story. For such cases, one could do a transformation to
+eliminate such. A such transformation is the logarithmic transformation, with a
+base $10$ for example.
+
+Now note that the transformation on the plot also transforms the slope values,
+so the increase/decrease is no longer linear.

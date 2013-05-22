@@ -1,4 +1,8 @@
-\section{Confidence interval}
+\chapter*{Confidence interval}
+
+\addcontentsline{toc}{chapter}{Confidence interval}
+\setcounter{section}{0}
+\renewcommand*{\theHsection}{ch4.\the\value{section}}
 
 We observe the real world in order to understand the theoretical world; for this
 we'll use the scientific and statistical models divised in the theoretical world
@@ -41,7 +45,7 @@ population parameter. Inferential procedures can be used on data that are
 collected from a random sample from a population.
 
 
-\subsection{Confidence intervals with proportions}
+\section{Confidence intervals with proportions}
 
 Let us follow the example of the bottle cap. We are searching for the real $p$
 with the given estiamte $\hat{p}$. The expected value of $\hat{p}$ is
@@ -99,7 +103,7 @@ $\frac{\alpha}{2}$. In this case the area between intervals
 $-z_{\frac{\alpha}{2}}$ to $z_{\frac{\alpha}{2}}$ is $1-\alpha$, which we are
 looking over, as now we're missing $\alpha$ of the full area.
 
-\subsection{Sample size for estimating a proportion}
+\section{Sample size for estimating a proportion}
 
 Now in order to get a proportion the size of the sample has a major impact.
 Let's see how we can determinate the sample size we need to find a given
@@ -140,7 +144,7 @@ For any interval, $p$ is either contained in the interval or not. Different
 margin of error will result in different number of events required, however the
 sample size increases quadratically as the margin of error decreases linearly.
 
-\subsection{Confidence intervals for means}
+\section{Confidence intervals for means}
 
 In this case the data is not a categorical one, is instead a continous variable.
 In this case the expected value is $\mu = \bar{X}$, and this is also our
@@ -178,7 +182,7 @@ given confidence we can say that our true mean is somewhere inside the
 calculated confidence interval, which depends from the sample mean with the
 calculated marginal error.
 
-\subsection{Robustness for confidence intervals}
+\section{Robustness for confidence intervals}
 
 To use these methods many conditions must be satisfied, and an important part of
 the statistical inference is to determine if these hold. Here are what we need

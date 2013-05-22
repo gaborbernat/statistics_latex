@@ -29,7 +29,7 @@
 \usepackage{enumerate}
 \usepackage{minted}
 \usepackage{titlesec}
-\newcommand{\sectionbreak}{\clearpage}
+%\newcommand{\sectionbreak}{\clearpage}
 
 % The csquotes should be used with bable to help with the references formating 
 \usepackage[style=english]{csquotes} 
@@ -45,7 +45,7 @@ backref=false]{biblatex}
 \usepackage[all]{hypcap}   %Let the links point above figures and not below
 \usepackage[numbered,
 			  open, 
-			  openlevel=2,
+			  openlevel=1,
 			  atend]{bookmark}% - We want numbers
 
 \usepackage{fancyhdr}
@@ -86,10 +86,12 @@ backref=false]{biblatex}
 \input{front_page.tex}
 
 \tableofcontents
-\chapter{Introduction}
 \input{1/1.tex}
 \input{2/2.tex}
 \input{3/3.tex}
 \input{4/4.tex}
 \input{5/5.tex}
+\input{6/6.tex}
+\input{7/7.tex}
+\input{8/8.tex}
 \end{document}

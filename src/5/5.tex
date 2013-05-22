@@ -1,4 +1,8 @@
-\section{Statistical Tests of Significance}
+\chapter*{Statistical Tests of Significance}
+
+\addcontentsline{toc}{chapter}{Statistical Tests of Significance}
+\setcounter{section}{0}
+\renewcommand*{\theHsection}{ch5.\the\value{section}}
 
 Suppose that we observe the difference between two groups, the question now is
 that is the difference significant or not? It's the answer to the question could
@@ -20,9 +24,9 @@ data, or holds something more to it. To observer this we construct a theoretical
 model that assumes that there is no difference between the groups. We are either
 searching for proof of this or some contradiction, based on our data amassed.
 
-\subsection{The structure of the statistical test}
+\section{The structure of the statistical test}
 
-\subsubsection{Assumption}
+\subsection{Assumption}
 
 Statistical math is like proof by contradiction in math. We start out by
 assuming something. Then we observe the date, do some calculations and
@@ -57,7 +61,7 @@ effect of plastical surgery on the perceived age of a person, here our null
 hypothesis is that there is no change, and we have two alternative, they either
 look younger or older.
 
-\subsubsection{The evidence}
+\subsection{The evidence}
 In the court to proove our claim we'll need evidence. In statistics the
 evidences are proovided by the data we have. In order to make it useful we have
 to summarize our data into a \emph{test statistic}; whcih is a numeric
@@ -66,7 +70,7 @@ that the null hypothesis holds. In case of the plastic surgery we summarize data
 assuming that the perceived age difference is zero, to support our null
 hypothesis.
 
-\subsubsection{Delibiration}
+\subsection{Delibiration}
 Once the evidences are presented the judge/jury delibirates if beyond a
 reasonable doubt the null hypothesis holds or not. In statistics the tool of
 delibiration is the \emph{p--value}. This transforms a test statistics into a
@@ -83,7 +87,7 @@ $H_0$ is or it is not true, however it's not a random variable, because it's
 either true or not true, no randomness involved. The p--value just tells you how
 unlikely the test statistic is if the $H_0$ were to be true.
 
-\subsubsection{The verdict}
+\subsection{The verdict}
 
 The fourth final step is the verdict. Not strong enough evidance corresponds to
 a high p--value. With this we conclude that the data is consistent with the null
@@ -113,7 +117,7 @@ evidence to reject the null hypothesis. These data are consistent with the null
 hypothesis $p=0.5$ but would also be consistent with a null hypothesis that the
 probability of heads is $0.5000001$ or $0.501$ or $0.52$ or many other values.
 
-\subsection{Hypothesis Testing for Proportions}
+\section{Hypothesis Testing for Proportions}
 
 We'll use the following situation to visualize: there has been a poll with
 $n=1,046$ people from which $42\%$ said that they support the mayor. So the true
@@ -161,7 +165,7 @@ can say that P($|Z| \geq$  test statistic)=P($Z \geq$  test statistic) $+$
 P($Z <-$  test statistic), which in case of symmetric distributions
 translates to $2\cdot$P($Z \geq$  test statistic).
 
-\subsection{Hypothesis Testing for Means}
+\section{Hypothesis Testing for Means}
 
 As test case for this we'll use the plastic surgery data, where we were
 interested just how much younger are people perceived after the surgery. The
@@ -193,7 +197,7 @@ Now we got something for what we know its distribution, it's:
 
 Which is really small, and such we can reject the null hypothesis.
 
-\subsection{Powerand Type I and Type II Errors}
+\section{Powerand Type I and Type II Errors}
 
 We start out from the null and the alternative hypothesis. We then calculate
 thep p--value representing the probability of observing the value of the test
@@ -237,7 +241,7 @@ Generally we would like to decrease both types of errors, which can be done by
 increasing the sample size (as having more evidence in a trial). It's context
 dependent which of the errors are more important.
 
-\subsection{Potential pitfalls to look out for}
+\section{Potential pitfalls to look out for}
 
 Do not miss interpret p--values. It does not tell you how likely it is that
 $H_0$ is true. It tells you how likely the observed data would be if $H_0$
@@ -302,4 +306,6 @@ although the norma distribution is continous.
 
 Start with explanatory analysis using plots and summary statistics. If you can't
 visualize it you may wonder if its important even if from a statistical point of
-view it's significant.
+view it's significant. It is not appropriate to extrapolate the results from a
+regression model since the relationship between the response and dependent
+variable may change.
