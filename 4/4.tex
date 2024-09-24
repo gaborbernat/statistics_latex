@@ -24,13 +24,13 @@ a beer cap. If we were to perform a single experiment and get $m$ one side
 out of $n$ events we can ask: was this a likely outcome? $m$ may be a sample of
 any sample distribution (with its own parameters). For instance for the beer cap
 let $n=1000$ and $m=576$. Our statistical model is binomial with a $1000$
-samples, however we have no idea what's the probability of the model. 
+samples, however we have no idea what's the probability of the model.
 
 An estimation is $\hat{p}=\frac{n}{m}=\frac{576}{1000}=0.576$. This may be a
 good estimate, however it may be some other number, and so we ask what elso
 could $p$ be? That is what is an interval that based on our existing experiments
 the probability of getting one side of the beer cap could be? We refer to this
-as the \emph{confidence interval}. 
+as the \emph{confidence interval}.
 
 The following methods are suppose that our data was taken in a form of simple
 random sampling, and that our variables are independent; something that
@@ -54,7 +54,7 @@ $\mbox{E}(\hat{p})=p$ the variance is $\mbox{Var}(\hat{p}) =
 because $p$ is the addition of lots and lots of small flips, it approximately
 follows the normal distribution; that is $\hat{p} \approx
 \mbox{Normal}\left(p, \frac{p(1-p)}{1000}\right)$. Now by performing a
-reorganization: 
+reorganization:
 
 \[ \frac{\hat{p}-p}{\sqrt{p\cdot\frac{1-p}{n}}} \approx \mbox{Normal}(0,1) \]
 
@@ -87,9 +87,9 @@ as:
 
 \begin{align*}
 a &= \hat{p} - \mbox{margin of error} \\
-  b &= \hat{p} - \mbox{margin of error} \\ 
+  b &= \hat{p} - \mbox{margin of error} \\
   \mbox{margin of error} &= \frac{b-a}{2}
-\end{align*} 
+\end{align*}
 
 Now modifying the area under the normal distribution that we take we can get
 different confidence intervals for different probabilities. Now if you specify a
@@ -111,24 +111,24 @@ proportion. We do not want to go overboard with this as we may just waste
 resources or induce unrequired effort to collect it. We assume that data was
 collected with simple random sampling from a population.
 
-So a margin of error is: 
+So a margin of error is:
 
 \[ \mbox{margin of error} = z_{\frac{\alpha}{2}}\sqrt{p \cdot
 \frac{1-p}{n}}\]
 
-For isntance, if our confidence interval is $95\%$, then 
+For isntance, if our confidence interval is $95\%$, then
 $\frac{\alpha}{2}=\frac{1-0.95}{2}=0.025$, and we want a margin of error of
 $\beta=0.03$. The question is what $n$ should be? For $95\%$ our normal quantile
 is $1.96$. So:
 
 \[ 0.03 = 1.96\sqrt{p \cdot
 \frac{1-p}{n}}\]
- 
+
  But we do not know what $p$ will be. To bypass this we plan for the worst case
  scenario, the expression $p\cdot(1-p)$ has its maximum at $p=\frac{1}{2}$,
  which also give our maximal margin of error for a given $n$. Now we resolve the
  equation:
- 
+
  \[ n=\left( \frac{1.96 \cdot \frac{1}{2}}{0.03} \right)^2 = 1067 \]
 
 Confidence intervals are about our confidence in the procedure to give us
@@ -191,7 +191,7 @@ to make sure that they are true:
 \begin{enumerate}
   \item the $n$ observations are independent,
   \item $n$ needs to be large enough, so that the central limit theorem may kick
-  in and $\hat{p}$ to have a normal distribution, 
+  in and $\hat{p}$ to have a normal distribution,
 \end{enumerate}
 
 For extreme theoretical $p$ values larger counts of samples are required to
@@ -199,7 +199,7 @@ achieve the same confidence interval. For instance in case of a coin flip if $p$
 is $\frac{1}{2}$ a hundred samples may be enough for the central limit theorem
 to kick in and achive a $95\%$ confidence. However, if $p=0.01$ we may need
 $1000$ samples for the same confidence. An explanation for this is that the
-normal distribution is a continous model, and we are using it to estimate 
+normal distribution is a continous model, and we are using it to estimate
 discrete values.
 
 In order for the confidence interval procedure for the true proportion to
@@ -227,7 +227,7 @@ The $t$ distribution works extremly well with even a low number of samples ($n
 be true we need some really extreme distribution, like most of the time on one
 end, but has some chance for an outlier value. However, in these cases by just
 increasing the mean with a constant multiplier (like to $40$) may already result
-in a $90\%$ confidence value. 
+in a $90\%$ confidence value.
 
 Nevertheless, we also need to consider if estimating the mean is a meaningful
 thing to do. Remeber that the mean is not a robust measurement, because it's

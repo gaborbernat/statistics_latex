@@ -12,33 +12,33 @@ instance of the variable we call the \emph{observed value} or
 \emph{observation}. Variables can be of three kind:
 
 \begin{description}
-  \item[quantitive] variable take numerical values for which arithmetic
-  operations make sense. The height of the people is a such variable,
-  \item[caterogical] variable consist of records into which the observation
-  falls into (one of several categories). For example the countries of the
-  world may be classified into one of the five great continets: Europe, America,
-  Africa, Asia and the Pacific,
-  \item[ordinal] variable have natural order, however the difference between two
-  instance of the variables does nt always make sense. A good example is grades
-  given by a teacher: A, B, C, D, E, F.
-   
+	\item[quantitive] variable take numerical values for which arithmetic
+	      operations make sense. The height of the people is a such variable,
+	\item[caterogical] variable consist of records into which the observation
+	      falls into (one of several categories). For example the countries of the
+	      world may be classified into one of the five great continets: Europe, America,
+	      Africa, Asia and the Pacific,
+	\item[ordinal] variable have natural order, however the difference between two
+	      instance of the variables does nt always make sense. A good example is grades
+	      given by a teacher: A, B, C, D, E, F.
+
 \end{description}
 
 \section{Quantative variables}
 
 One way of making sense of a quantitive variable is to use the \emph{five
-number summary}. Given a collection of a observations we can calculate the: 
+	number summary}. Given a collection of a observations we can calculate the:
 
 \begin{description}
-  \item[Minimum] is the lowest observation value.
-  \item[Maximum] is the highest observation value.
-  \item[Median] is the center observation, average point. To find it you'll need
-  to sort the observations, and then take the observation in the middle
-  position.
-  \item[First quartile] is the observation value at the $\frac{1}{4}$rd position
-  in the sorted observation array.
-  \item[Third quartile] is the observation value at the $\frac{3}{4}$rd position
-  in the sorted observation array.
+	\item[Minimum] is the lowest observation value.
+	\item[Maximum] is the highest observation value.
+	\item[Median] is the center observation, average point. To find it you'll need
+	      to sort the observations, and then take the observation in the middle
+	      position.
+	\item[First quartile] is the observation value at the $\frac{1}{4}$rd position
+	      in the sorted observation array.
+	\item[Third quartile] is the observation value at the $\frac{3}{4}$rd position
+	      in the sorted observation array.
 \end{description}
 
 A graphical representation of this five values is possible via the
@@ -46,9 +46,9 @@ A graphical representation of this five values is possible via the
 show the minimum and the maximum values.
 
 \begin{figure}[htbp]
-\label{fig:boxplot}
-\caption{A simple way to represent the \emph{five number summary}.}
-\includegraphics{1/boxplot-boxplot}
+	\label{fig:boxplot}
+	\caption{A simple way to represent the \emph{five number summary}.}
+	\includegraphics{1/boxplot-boxplot}
 \end{figure}
 
 Note that the median, first or thrid quartile may result in a non--integer
@@ -64,8 +64,8 @@ the difference between the $3$rd and the $1$st quartile. Then we can define the
 inner fences as the:
 
 \begin{description}
-  \item[lower fence]  is $=1$st quartile $- ~1.5\cdot $IQR, and the  
-  \item[upper fence]  is $=3$st quartile $+ ~1.5\cdot $IQR.  
+	\item[lower fence]  is $=1$st quartile $- ~1.5\cdot $IQR, and the
+	\item[upper fence]  is $=3$st quartile $+ ~1.5\cdot $IQR.
 \end{description}
 
 Now the lower whisker is noted as the lower fence, while the upper fence as the
@@ -74,17 +74,17 @@ upper fence are drawn with their own circle on the plot as shown on figure
 \ref{fig:boxplot_modified}.
 
 \begin{figure}[htbp]
-\label{fig:boxplot_modified}
-\caption{Modified boxplots help dealing with outliers.}
-\includegraphics{1/boxplot_modified-boxplot_modified}
+	\label{fig:boxplot_modified}
+	\caption{Modified boxplots help dealing with outliers.}
+	\includegraphics{1/boxplot_modified-boxplot_modified}
 \end{figure}
 
 \subsection{Mean}
 Given a list of observations ($x_1, x_2, \ldots x_n$), the mean of the variable
-is noted as $\bar{x}$ (or $\mu$) and is calculated as: 
-\[ \mbox{Mean} = \bar{x} = 
-\frac{\sum{\mbox{data values}}}{\mbox{number of data points}} =
-\frac{\sum_{i=1}^{n}{x_i}}{n}.
+is noted as $\bar{x}$ (or $\mu$) and is calculated as:
+\[ \mbox{Mean} = \bar{x} =
+	\frac{\sum{\mbox{data values}}}{\mbox{number of data points}} =
+	\frac{\sum_{i=1}^{n}{x_i}}{n}.
 \]
 
 However, this definition of mean is not robust, as it's easily influenced by
@@ -92,7 +92,7 @@ outlier points. Note, that in contrast the median is robust. To alleviate this
 we can introduce the conept of trimmed mean, which exclude some percentage of
 the lowest and highest values from the observations, before performing the same
 operation to calculate the \emph{trimmed--mean}. The input of the trimmed mean
-is the percentage of outliers to remove. 
+is the percentage of outliers to remove.
 
 \subsection{Spread of the data}
 
@@ -113,9 +113,9 @@ its mean.
 \subsection{The shape of the data - histogram}
 
 \begin{figure}[htbp]
-\label{fig:histogram}
-\caption{Histogram}
-\includegraphics{1/histogram-histogram}
+	\label{fig:histogram}
+	\caption{Histogram}
+	\includegraphics{1/histogram-histogram}
 \end{figure}
 
 The distribution is the pattern of values in the data, showing their frequency
@@ -125,21 +125,21 @@ graphically; you can see an example of this on figure \ref{fig:histogram}.
 Its key part is the number of \emph{bin}s used, as observations must be
 separated into mutually exclusive and exhaustive bins. \emph{Cutpoints} define
 where the bins start and where they end. Each bin has its own \emph{frequency},
-the number of observations in it. The largest bins define the \emph{peaks} or 
+the number of observations in it. The largest bins define the \emph{peaks} or
 \emph{modes}. If a variable has a single peak we call it an unimodal, bimodal
 for two peaks and multiple peaks above that.
 
 \begin{figure}[htbp]
-\label{fig:histogram_skewed}
-\caption{Skewed histograms}
-\includegraphics{img/skewed.png}
+	\label{fig:histogram_skewed}
+	\caption{Skewed histograms}
+	\includegraphics{img/skewed.png}
 \end{figure}
 
 Uniform distribution is a case when all the data values occur around the same
 times, so we have no peaks, and such the variable has no mode. The tails of the
 histogram are on its left or right side, where its extreme values are. A
 histogram is left skewed if it has the left tail larger than the right, and
-right skewed if the right tail  is larger than its left. 
+right skewed if the right tail  is larger than its left.
 
 \subsection{Empirical rule}
 
@@ -159,7 +159,7 @@ barcharts we may choose to normalize the frequency, by dividing it with the
 total number of observations.
 
 \begin{figure}[htbp]
-\label{fig:category_representation}
-\caption{Skewed histograms}
-\includegraphics{1/categorical_representation-categorical_representation}
+	\label{fig:category_representation}
+	\caption{Skewed histograms}
+	\includegraphics{1/categorical_representation-categorical_representation}
 \end{figure}
